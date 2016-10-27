@@ -4,7 +4,7 @@ var returnData = "";
 module.exports = {
 
     index: function() {
-        connection.connection.query('SELECT * from testTable', function(err, rows, fields) {
+        connection.connection.query('SELECT * from User', function(err, rows, fields) {
             if (err) throw err;
             returnData = rows;
         });
