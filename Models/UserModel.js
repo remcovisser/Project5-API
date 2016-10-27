@@ -1,14 +1,11 @@
-var connection = require(__base + '/database');
-var returnData = "";
+var baseModel = require(__base + '/Models/BaseModel');
 
-module.exports = {
+exports.index = function(res)
+{
+    baseModel.selectData(res, 'SELECT * from User');
+}
 
-    index: function() {
-        connection.connection.query('SELECT * from User', function(err, rows, fields) {
-            if (err) throw err;
-            returnData = rows;
-        });
-        return returnData;
-  }
-
-};
+exports.show = function(res, id)
+{
+    baseModel.selectData(res, 'SELECT * from User WHERE user_id = ' + id);
+}
