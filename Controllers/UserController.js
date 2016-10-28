@@ -1,16 +1,15 @@
 // Import UserModdel
 var userModel = require(__base + '/Models/UserModel');
 
-
 module.exports = {
 
   index: function(req, res, next) {
-    var data = userModel.index();
-    res.send(data);
+    userModel.index(res);
+    next();
   },
 
   show: function(req, res, next) {
-    res.send('show user: ' + req.params.id);
+    userModel.show(res, req.params.id);
     next();
   },
 
@@ -22,6 +21,7 @@ module.exports = {
   store: function(req, res, next) {
     var data = JSON.parse(req.body);
     userModel.store(res, data);
+    next();
   },
 
   edit: function(req, res, next) {

@@ -23,6 +23,7 @@ server.use(restify.CORS());
 server.use(restify.bodyParser());
 
 var userController = require('./Controllers/UserController');
+var productController = require('./Controllers/productController');
 
 
 // Users
@@ -33,3 +34,10 @@ server.post('users/create', userController.store);
 server.get('users/:id/edit', userController.edit);
 server.put('users/:id', userController.update);
 server.del('users/:id', userController.destroy);
+
+// Products
+server.get('products', productController.index);
+server.get('products/:id', productController.show);
+server.post('products/create', productController.store);
+server.put('products/:id', productController.update);
+server.del('products/:id', productController.destroy);
