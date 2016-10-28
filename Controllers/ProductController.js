@@ -20,7 +20,8 @@ module.exports = {
   },
 
   update: function(req, res, next) {
-    res.send('post edit product: ' + req);
+    var data = JSON.parse(req.body);
+    productModel.update(res, data, req.params.id);
     next();
   },
 
