@@ -9,8 +9,7 @@ module.exports = {
   },
 
   show: function(req, res, next) {
-    var data = JSON.parse(req.body);
-    userModel.show(res, data.user_id);
+    userModel.show(res, req.params.id);
     next();
   },
 

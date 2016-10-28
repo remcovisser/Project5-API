@@ -17,7 +17,7 @@ exports.store = function(res, params)
 
 exports.update = function(res, params) 
 {
-    baseModel.send(res, 'UPDATE User SET `username` = "'+params.username+'", `password` = "'+params.password+'", `email` = "'+params.email+'")');     
+    baseModel.send(res, 'UPDATE User SET `username` = "'+params.username+'", `password` = "'+params.password+'", `email` = "'+params.email+'" WHERE `user_id` = '+params.user_id+'');     
 }
 
 exports.destroy = function(res, id) 
