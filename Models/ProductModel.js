@@ -12,7 +12,7 @@ exports.show = function(res, id)
 
 exports.store = function(res, params)
 {
-    baseModel.send(res, 'INSERT INTO Product (p_name,p_description,p_price) VALUES ("'+params.p_name+'", "'+params.p_description+'", '+params.p_price+', )');
+    baseModel.send(res, 'INSERT INTO Product (p_name,p_description,p_price) VALUES ("'+params.p_name+'", "'+params.p_description+'", "'+params.p_price+'")');
 }
 
 exports.destroy = function(res, id)
