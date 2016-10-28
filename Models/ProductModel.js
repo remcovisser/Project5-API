@@ -18,7 +18,7 @@ module.exports = {
 
     update: function(res, params, id)
     {
-        baseModel.send(res, "UPDATE Product SET p_name='"+params.p_name+"', p_description='"+params.p_description+"', p_price='"+params.p_price+"' WHERE product_id = " + id);
+        baseModel.send(res, "UPDATE Product SET p_name='"+params.p_name+"', p_description='"+params.p_description+"', p_price="+params.p_price+" WHERE product_id = " + id);
     },
 
     destroy: function(res, id)

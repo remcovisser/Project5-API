@@ -1,30 +1,30 @@
-var productModel = require(__base + '/Models/ProductModel');
+var countryModel = require(__base + '/Models/CountryModel');
 
 module.exports = {
   index: function(req, res, next) {
-    productModel.index(res);
+    countryModel.index(res);
     next();
   },
 
   show: function(req, res, next) {
-    productModel.show(res, req.params.id);
+    countryModel.show(res, req.params.id);
     next();
   },
 
   store: function(req, res, next) {
     var data = JSON.parse(req.body); 
-    productModel.store(res, data);
+    countryModel.store(res, data);
     next();
   },
 
   update: function(req, res, next) {
     var data = JSON.parse(req.body);
-    productModel.update(res, data, req.params.id);
+    countryModel.update(res, data, req.params.id);
     next();
   },
 
   destroy: function(req, res, next) {
-    productModel.destroy(res, req.params.id);
+    countryModel.destroy(res, req.params.id);
     next();
   },
 };

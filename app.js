@@ -25,8 +25,11 @@ server.use(restify.bodyParser());
 
 // Import controllesr
 var userController = require('./Controllers/UserController');
-var productController = require('./Controllers/productController');
-
+var productController = require('./Controllers/ProductController');
+var categoryController = require('./Controllers/CategoryController');
+var cityController = require('./Controllers/CityController');
+var countryController = require('./Controllers/CountryController');
+var favouriteController = require('./Controllers/FavouriteController');
 
 // -------------- Routes ---------------
 // Users
@@ -42,3 +45,32 @@ server.get('products/:id', productController.show);
 server.post('products/create', productController.store);
 server.put('products/:id', productController.update);
 server.del('products/:id', productController.destroy);
+
+// Categories
+server.get('categories', categoryController.index);
+server.get('categories/:id', categoryController.show);
+server.post('categories/create', categoryController.store);
+server.put('categories/:id', categoryController.update);
+server.del('categories/:id', categoryController.destroy);
+
+// Cities
+server.get('cities', cityController.index);
+server.get('cities/:id', cityController.show);
+server.post('cities/create', cityController.store);
+server.put('cities/:id', cityController.update);
+server.del('cities/:id', cityController.destroy);
+
+// Countries
+server.get('countries', countryController.index);
+server.get('countries/:id', countryController.show);
+server.post('countries/create', countryController.store);
+server.put('countries/:id', countryController.update);
+server.del('countries/:id', countryController.destroy);
+
+// Favourites
+server.get('favourites', favouriteController.index);
+server.get('favourites/:user_id', favouriteController.show);
+server.get('favourites/:user_id/:product_id', favouriteController.showOne);
+server.post('favourites/create', favouriteController.store);
+server.put('favourites/:user_id/:product_id', favouriteController.update);
+server.del('favourites/:user_id/:product_id', favouriteController.destroy);
