@@ -1,17 +1,17 @@
 var connection = require(__base + '/database');
 
-exports.selectData = function(res, query)
+exports.get = function(res, query)
 {
-    connection.connection.query(query, function(err, rows, fields) 
+    connection.connection.query(query, function(error, rows, fields) 
     {
-        err == null ? res.send(rows) : res.send("Shiet");
+        error == null ? res.send(rows) : res.send(error);
     });
 }
 
-exports.insertData = function(res, query)
+exports.send = function(res, query1)
 {
-    connection.connection.query(query, function(err, rows, fields)
+    connection.connection.query(query1, function(error, result)
     {
-        err == null ? res.send(rows) : res.send("No data?!");
+        error == null ? res.send("Query has been executed") : res.send(error);
     });
 }
