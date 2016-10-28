@@ -14,8 +14,7 @@ module.exports = {
   },
 
   store: function(req, res, next) {
-      var data = JSON.parse(req.body);
-      
+    var data = JSON.parse(req.body); 
     productModel.store(res, data);
     next();
   },

@@ -1,16 +1,16 @@
 var connection = require(__base + '/database');
 
-exports.get = function(res, query)
+exports.get = function(res, executingQuery)
 {
-    connection.connection.query(query, function(error, rows, fields) 
+    connection.connection.query(executingQuery, function(error, rows, fields) 
     {
         error == null ? res.send(rows) : res.send(error);
     });
 }
 
-exports.send = function(res, query1)
+exports.send = function(res, executingQuery)
 {
-    connection.connection.query(query1, function(error, result)
+    connection.connection.query(executingQuery, function(error, result)
     {
         error == null ? res.send("Query has been executed") : res.send(error);
     });
