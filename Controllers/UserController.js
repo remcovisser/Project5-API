@@ -9,12 +9,8 @@ module.exports = {
   },
 
   show: function(req, res, next) {
-    userModel.show(res, req.params.id);
-    next();
-  },
-
-  create: function(req, res, next) {
-    res.send('create user');
+    var data = JSON.parse(req.body);
+    userModel.show(res, data.user_id);
     next();
   },
 
@@ -24,19 +20,28 @@ module.exports = {
     next();
   },
 
+  update: function(req, res, next) {
+    var data = JSON.parse(req.body);
+    userModel.update(res, data);
+    next();
+  },
+
+  destroy: function(req, res, next) {
+    var data = JSON.parse(req.body);
+    userModel.destroy(res, data.user_id);
+    next();
+  },
+
+  // These only get used for the front-end view
   edit: function(req, res, next) {
     res.send('edit user: ' + req.params.id);
     next();
   },
 
-  update: function(req, res, next) {
-    res.send('post edit user: ' + req.params);
+  create: function(req, res, next) {
+    res.send('create user');
     next();
   },
-
-  destroy: function(req, res, next) {
-    res.send('destroy user: ' + req.params.id);
-    next();
-  },
+  // These only get used for the front-end view
 
 };
