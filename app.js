@@ -30,7 +30,7 @@ var productController = require('./Controllers/productController');
 server.get('users', userController.index);
 server.get('users/:id', userController.show);
 server.get('users/create', userController.create);
-server.post('users', userController.store);
+server.post('users/create', userController.store);
 server.get('users/:id/edit', userController.edit);
 server.put('users/:id', userController.update);
 server.del('users/:id', userController.destroy);

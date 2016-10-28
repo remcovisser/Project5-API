@@ -5,12 +5,12 @@ module.exports = {
 
   index: function(req, res, next) {
     userModel.index(res);
-    //next();
+    next();
   },
 
   show: function(req, res, next) {
     userModel.show(res, req.params.id);
-    //next();
+    next();
   },
 
   create: function(req, res, next) {
@@ -19,7 +19,8 @@ module.exports = {
   },
 
   store: function(req, res, next) {
-    res.send('store user');
+    var data = JSON.parse(req.body);
+    userModel.store(res, data);
     next();
   },
 
