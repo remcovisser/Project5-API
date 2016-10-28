@@ -23,7 +23,7 @@ module.exports = {
 
     update: function(res, params, user_id, product_id)
     {
-        baseModel.send(res, "UPDATE Favourites SET product_id='"+params.product_id+"', user_id='"+params.user_id+"'  WHERE user_id = ' + user_id + 'AND product_id = " + product_id);
+        baseModel.send(res, "UPDATE Favourites SET product_id="+params.product_id+", user_id="+params.user_id+"  WHERE user_id = " + user_id + " AND product_id = " + product_id);
     },
 
     destroy: function(res, user_id, product_id)
