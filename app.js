@@ -20,6 +20,7 @@ server.listen(8080, function() {
 });
 
 server.use(restify.CORS());
+server.use(restify.bodyParser());
 
 var userController = require('./Controllers/UserController');
 var productController = require('./Controllers/productController');

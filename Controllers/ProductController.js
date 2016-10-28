@@ -14,13 +14,14 @@ module.exports = {
   },
 
   store: function(req, res, next) {
-      var test = req.params;
-    productModel.store(res, req.params);
+      var data = JSON.parse(req.body);
+      
+    productModel.store(res, data);
     next();
   },
 
   update: function(req, res, next) {
-    res.send('post edit product: ' + req.params);
+    res.send('post edit product: ' + req);
     next();
   },
 
