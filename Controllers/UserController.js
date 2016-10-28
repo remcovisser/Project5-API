@@ -6,7 +6,6 @@ module.exports = {
 
   index: function(req, res, next) {
     var data = userModel.index();
-  
     res.send(data);
   },
 
@@ -21,8 +20,8 @@ module.exports = {
   },
 
   store: function(req, res, next) {
-    res.send('store user');
-    next();
+    var data = JSON.parse(req.body);
+    userModel.store(res, data);
   },
 
   edit: function(req, res, next) {
