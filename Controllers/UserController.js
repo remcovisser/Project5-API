@@ -13,6 +13,11 @@ module.exports = {
     next();
   },
 
+  find: function(req, res, next) {
+    userModel.find(res, req.params.username);
+    next();
+  },
+
   store: function(req, res, next) {
     var data = JSON.parse(req.body);
     userModel.store(res, data);
