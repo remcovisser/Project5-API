@@ -3,12 +3,12 @@ var baseModel = require(__base + '/Models/BaseModel');
 module.exports = {
     index: function(res)
     {
-        baseModel.get(res, 'SELECT * from Category');
+        baseModel.get(res, "SELECT * from Category WHERE boolean_deleted = 0");
     },
 
     show: function(res, id)
     {
-        baseModel.get(res, 'SELECT * from Category WHERE category_id = ' + id);
+        baseModel.get(res, "SELECT * from Category WHERE category_id = "+id+" AND boolean_deleted = 0");
     },
 
     store: function(res, params)
@@ -23,6 +23,6 @@ module.exports = {
 
     destroy: function(res, id)
     {
-        baseModel.send(res, 'DELETE FROM Category WHERE category_id = ' + id);
+        baseModel.send(res, "UPDATE Category SET boolean_deleted = 1 WHERE category_id = " + id);
     }
 };

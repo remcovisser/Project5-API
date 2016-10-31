@@ -3,12 +3,12 @@ var baseModel = require(__base + '/Models/BaseModel');
 module.exports = {
     index: function(res)
     {
-        baseModel.get(res, 'SELECT * from Product');
+        baseModel.get(res, "SELECT * from Product WHERE boolean_deleted = 0");
     },
 
     show: function(res, id)
     {
-        baseModel.get(res, 'SELECT * from Product WHERE product_id = ' + id);
+        baseModel.get(res, "SELECT * from Product WHERE product_id = "+id+" AND boolean_deleted = 0");
     },
 
     store: function(res, params)
@@ -23,6 +23,6 @@ module.exports = {
 
     destroy: function(res, id)
     {
-        baseModel.send(res, 'DELETE FROM Product WHERE product_id = ' + id);
+        baseModel.send(res, "UPDATE Product SET boolean_deleted = 1 WHERE product_id = " + id);
     }
 };
