@@ -22,8 +22,7 @@ exports.update = function(res, params)
 
 exports.destroy = function(res, id) 
 {
-    console.log('bl');
-    //baseModel.send(res, 'UPDATE User SET `boolean_delete` = 1 WHERE `user_id` = ' + id);     
+    baseModel.send(res, 'UPDATE User SET `boolean_deleted` = 1 WHERE `user_id` = ' + id);     
 }
 
 

@@ -26,8 +26,7 @@ module.exports = {
   },
 
   destroy: function(req, res, next) {
-    var data = JSON.parse(req.body);
-    userModel.destroy(res, data.user_id);
+    userModel.destroy(res, req.params.id);
     next();
   },
 

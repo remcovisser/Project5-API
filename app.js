@@ -30,6 +30,7 @@ var categoryController = require('./Controllers/CategoryController');
 var cityController = require('./Controllers/CityController');
 var countryController = require('./Controllers/CountryController');
 var favouriteController = require('./Controllers/FavouriteController');
+var orderController = require('./Controllers/OrderController');
 
 // -------------- Routes ---------------
 // Users
@@ -76,3 +77,10 @@ server.get('favourites/:user_id/:product_id', favouriteController.showOne);
 server.post('favourites/create', favouriteController.store);
 server.put('favourites/:user_id/:product_id', favouriteController.update);
 server.del('favourites/:user_id/:product_id', favouriteController.destroy);
+
+// Orders
+server.get('orders', orderController.index);
+server.get('orders/:id', orderController.show);
+server.post('orders/create', orderController.store);
+server.put('orders/:id', orderController.update);
+server.del('orders/:id', orderController.destroy);
