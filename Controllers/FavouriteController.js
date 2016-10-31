@@ -16,6 +16,16 @@ module.exports = {
     next();
   },
 
+  getProducts: function(req, res, next) {
+    favouriteModel.getProducts(res, req.params.user_id);
+    next();
+  },
+
+  getUsers: function(req, res, next) {
+    favouriteModel.getUsers(res, req.params.product_id);
+    next();
+  },
+
   store: function(req, res, next) {
     var data = JSON.parse(req.body); 
     favouriteModel.store(res, data);

@@ -2,10 +2,10 @@ var restify = require('restify');
 var fs = require('fs');
 var mysql = require('mysql');
 
-// Set a global variable the root directory
+// Set a global variable for the root directory
 global.__base = __dirname + '/';
 
-// Set headers to allow XHR reqeust from different port
+// Set headers to allow XHR requests from a different port
 restify.CORS.ALLOW_HEADERS.push('accept');
 restify.CORS.ALLOW_HEADERS.push('sid');
 restify.CORS.ALLOW_HEADERS.push('lang');
@@ -13,17 +13,17 @@ restify.CORS.ALLOW_HEADERS.push('origin');
 restify.CORS.ALLOW_HEADERS.push('withcredentials');
 restify.CORS.ALLOW_HEADERS.push('x-requested-with');
 
-// Setup server
+// Setup the server
 var server = restify.createServer();
 server.listen(8080, function() {
   console.log('%s listening at %s', server.name, server.url);
 });
 
-// Set server options
+// Set the server options
 server.use(restify.CORS());
 server.use(restify.bodyParser());
 
-// Import controllesr
+// Import controllers
 var userController = require('./Controllers/UserController');
 var productController = require('./Controllers/ProductController');
 var categoryController = require('./Controllers/CategoryController');
@@ -69,6 +69,8 @@ server.del('countries/:id', countryController.destroy);
 
 // Favourites
 server.get('favourites', favouriteController.index);
+server.get('favourites/:user_id/products', favouriteController.getProducts);
+server.get('favourites/:product_id/users', favouriteController.getUsers);
 server.get('favourites/:user_id', favouriteController.show);
 server.get('favourites/:user_id/:product_id', favouriteController.showOne);
 server.post('favourites/create', favouriteController.store);
