@@ -36,6 +36,7 @@ var orderController = require('./Controllers/OrderController');
 // Users
 server.get('users', userController.index);
 server.get('users/:id', userController.show);
+server.get('users/:username/find', userController.find);
 server.post('users/create', userController.store);
 server.put('users/:id', userController.update);
 server.del('users/:id', userController.destroy);
