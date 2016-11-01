@@ -15,9 +15,14 @@ exports.find = function(res, user)
     baseModel.get(res, 'SELECT * FROM User WHERE username = "'+ user +'" and boolean_deleted = 0');
 }
 
+exports.login = function(res, params)
+{
+    baseModel.get(res, 'SELECT * FROM User WHERE username = "'+ params.username +'" and password = "'+ params.password +'" and boolean_deleted = 0');
+}
+
 exports.store = function(res, params) 
 {
-    baseModel.send(res, "INSERT INTO User(username, password, email, date_of_birth, admin) VALUES ('"+params.username+"', '"+params.password+"', '"+params.email+"', '"+params.date_of_birth+"', "+params.admin+")");    
+    baseModel.send(res, "INSERT INTO User(username, password, email, date_of_birth) VALUES ('"+params.username+"', '"+params.password+"', '"+params.email+"', '"+params.date+"')");    
 }
 
 exports.update = function(res, params) 

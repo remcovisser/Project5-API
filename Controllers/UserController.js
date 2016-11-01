@@ -18,6 +18,11 @@ module.exports = {
     next();
   },
 
+  login : function(req, res, next){
+    userModel.login(res, req.params);
+    next();
+  },
+
   store: function(req, res, next) {
     var data = JSON.parse(req.body);
     userModel.store(res, data);
