@@ -33,6 +33,8 @@ var favouriteController = require('./Controllers/FavouriteController');
 var orderController = require('./Controllers/OrderController');
 var orderLinesController = require('./Controllers/OrderLinesController');
 var productCategoryController = require('./Controllers/ProductCategoryController');
+var streetController = require('./Controllers/StreetController');
+var userAddressController = require('./Controllers/UserAddressController');
 
 // -------------- Routes ---------------
 // Users
@@ -102,3 +104,18 @@ server.get('productcategory/category/:product_id', productCategoryController.get
 server.post('productcategory/create', productCategoryController.store);
 server.put('productcategory/:product_id/:category_id', productCategoryController.update);
 server.del('productcategory/:product_id/:category_id', productCategoryController.destroy);
+
+// Streets
+server.get('streets', streetController.index);
+server.get('streets/:id', streetController.show);
+server.post('streets/create', streetController.store);
+server.put('streets/:id', streetController.update);
+server.del('streets/:id', streetController.destroy);
+
+// UserAddress
+server.get('useraddress', userAddressController.index);
+server.get('useraddress/user/:address_id', userAddressController.getUsers);
+server.get('useraddress/address/:user_id', userAddressController.getAddresses);
+server.post('useraddress/create', userAddressController.store);
+server.put('useraddress/:user_id/:address_id', userAddressController.update);
+server.del('useraddress/:user_id/:address_id', userAddressController.destroy);
