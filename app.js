@@ -42,6 +42,7 @@ var wishlistController = require('./Controllers/WishlistController');
 server.get('users', userController.index);
 server.get('users/:id', userController.show);
 server.get('users/:username/find', userController.find);
+server.get('users/:username/:password', userController.login);
 server.post('users/create', userController.store);
 server.put('users/:id', userController.update);
 server.del('users/:id', userController.destroy);
