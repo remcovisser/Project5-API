@@ -35,6 +35,7 @@ var orderLinesController = require('./Controllers/OrderLinesController');
 var productCategoryController = require('./Controllers/ProductCategoryController');
 var streetController = require('./Controllers/StreetController');
 var userAddressController = require('./Controllers/UserAddressController');
+var wishlistController = require('./Controllers/WishlistController');
 
 // -------------- Routes ---------------
 // Users
@@ -119,3 +120,11 @@ server.get('useraddress/address/:user_id', userAddressController.getAddresses);
 server.post('useraddress/create', userAddressController.store);
 server.put('useraddress/:user_id/:address_id', userAddressController.update);
 server.del('useraddress/:user_id/:address_id', userAddressController.destroy);
+
+// Wishlist
+server.get('wishlist', wishlistController.index);
+server.get('wishlist/users/:product_id', wishlistController.getUsers);
+server.get('wishlist/products/:user_id', wishlistController.getProducts);
+server.post('wishlist/create', wishlistController.store);
+server.put('wishlist/:user_id/:product_id', wishlistController.update);
+server.del('wishlist/:user_id/:product_id', wishlistController.destroy);
