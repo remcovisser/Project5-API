@@ -32,6 +32,7 @@ var countryController = require('./Controllers/CountryController');
 var favouriteController = require('./Controllers/FavouriteController');
 var orderController = require('./Controllers/OrderController');
 var orderLinesController = require('./Controllers/OrderLinesController');
+var productCategoryController = require('./Controllers/ProductCategoryController');
 
 // -------------- Routes ---------------
 // Users
@@ -93,3 +94,11 @@ server.get('orderlines/:product_id/:order_id', orderLinesController.show);
 server.post('orderlines/create', orderLinesController.store);
 server.put('orderlines/:product_id/:order_id', orderLinesController.update);
 server.del('orderlines/:product_id/:order_id', orderLinesController.destroy);
+
+// ProductCategory
+server.get('productcategory', productCategoryController.index);
+server.get('productcategory/product/:category_id', productCategoryController.getProducts);
+server.get('productcategory/category/:product_id', productCategoryController.getCategories);
+server.post('productcategory/create', productCategoryController.store);
+server.put('productcategory/:product_id/:category_id', productCategoryController.update);
+server.del('productcategory/:product_id/:category_id', productCategoryController.destroy);

@@ -1,5 +1,4 @@
 var orderModel = require(__base + '/Models/OrderModel');
-var orderLinesModel = require(__base + '/Models/OrderLinesModel');
 
 module.exports = {
   index: function(req, res, next) {
@@ -26,6 +25,7 @@ module.exports = {
 
   destroy: function(req, res, next) {
     orderModel.destroy(res, req.params.id);
+    // TODO Delete orderLines
     next();
   },
 };
