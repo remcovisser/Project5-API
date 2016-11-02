@@ -1,6 +1,20 @@
-var restify = require('restify');
-var fs = require('fs');
-var mysql = require('mysql');
+var restify = require('restify'),
+    fs = require('fs'),
+    mysql = require('mysql'),
+    passport = require('passport'),
+    basicstrategy = require('passport-http').BasicStrategy;
+
+passport.use(new basicstrategy(
+  function(username, password, done) {
+    if (username.valueOf() === 'root' &&
+      password.valueOf() === 'root')
+      return done(null, true);
+    else
+      return done(null, false);
+  }
+));
+    
+
 
 // Set a global variable for the root directory
 global.__base = __dirname + '/';
@@ -22,6 +36,7 @@ server.listen(8080, function() {
 // Set the server options
 server.use(restify.CORS());
 server.use(restify.bodyParser());
+server.use(passport.initialize());
 
 // Import controllers
 var userController = require('./Controllers/UserController');
@@ -129,3 +144,7 @@ server.get('wishlist/products/:user_id', wishlistController.getProducts);
 server.post('wishlist/create', wishlistController.store);
 server.put('wishlist/:user_id/:product_id', wishlistController.update);
 server.del('wishlist/:user_id/:product_id', wishlistController.destroy);
+
+//authenticate example
+server.get('/testget', passport.authenticate('basic', { session: false }), userController.index);
+server.post('/testpost', passport.authenticate('basic', { session: false }), userController.index);
