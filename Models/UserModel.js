@@ -22,7 +22,7 @@ exports.login = function(res, params)
 
 exports.store = function(res, params) 
 {
-    baseModel.send(res, "INSERT INTO User(username, password, email, date_of_birth) VALUES ('"+params.username+"', '"+params.password+"', '"+params.email+"', '"+params.date+"')");    
+    baseModel.send(res, "INSERT INTO User(username, password, email, date_of_birth, create_date) VALUES ('"+params.username+"', '"+params.password+"', '"+params.email+"', '"+params.date+"', '"+params.create_date+"')");    
 }
 
 exports.update = function(res, params) 
