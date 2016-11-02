@@ -1,0 +1,16 @@
+{
+  "name": "Project5-API",
+  "version": "0.0.1",
+  "description": "ProjectWebShopApi",
+  "main": "app.js",
+  "author": {
+    "name": "Bunyamin Sakar"
+  },
+  "dependencies": {
+    "mysql": "2.11.1",
+    "passport": "0.3.2",
+    "passport-http": "^0.3.0",
+    "restify": "4.2.0",
+    "restify-session": "^1.1.1"
+  }
+}
