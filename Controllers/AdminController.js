@@ -12,7 +12,7 @@ module.exports = {
   },
 
   sumOrders: function(req, res, next) {
-    var result = adminModel.bestSellingProducts(res);
+    var result = adminModel.sumOrders(res);
     next();
   }
 };

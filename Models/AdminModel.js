@@ -20,7 +20,7 @@ module.exports = {
             res.send(parsedData);
         };
 
-        baseModel.getData(res, "SELECT x.create_date, COUNT(DISTINCT y.user_id) as users, DAY(x.create_date) as day FROM User x JOIN User y ON y.create_date <= x.create_date GROUP BY create_date;", callback);
+        baseModel.getData(res, "SELECT x.create_date, COUNT(DISTINCT y.user_id) as users, DAY(x.create_date) as day FROM User x JOIN User y ON y.create_date <= x.create_date GROUP BY create_date", callback);
     },
 
     bestSellingProducts: function(res, amount)
@@ -48,9 +48,22 @@ module.exports = {
     sumOrders: function(res)
     {
         var callback = function(data) {
-         
+            var parsedData = [];
+            var weekNumbers = [];
+            var total = [];
+
+            for(var i in data)
+            {
+                weekNumbers.push(data[i].weekNumber);
+                total.push(data[i].total);
+            }
+             parsedData.push({
+                   "weekNumbers" : weekNumbers,
+                   "total" : total
+            });
+            res.send(parsedData);
         };
 
-        baseModel.getData(res, "SELECT x.create_date, COUNT(DISTINCT y.user_id) as users, DAY(x.create_date) as day FROM User x JOIN User y ON y.create_date <= x.create_date GROUP BY create_date;", callback);
+        baseModel.getData(res, "SELECT SUM(ol.product_price) as total, WEEK(o.order_date) as weekNumber FROM Order_lines as ol, Orders as o WHERE ol.order_id = o.order_id GROUP BY WEEK(o.order_date)", callback);
     }    
 };
