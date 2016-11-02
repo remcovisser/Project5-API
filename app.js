@@ -146,6 +146,8 @@ server.del('wishlist/:user_id/:product_id', wishlistController.destroy);
 
 // Admin
 server.get('admin/registered-users', adminController.registeredUsers);
+server.get('admin/best-selling-products/:amount', adminController.bestSellingProducts);
+server.get('admin/sumorders', adminController.sumOrders);
 
 //authenticate example
 server.get('/testget', passport.authenticate('basic', { session: false }), userController.index);
