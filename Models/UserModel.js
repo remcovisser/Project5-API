@@ -12,7 +12,7 @@ exports.show = function(res, id)
 
 exports.find = function(res, user)
 {
-    baseModel.get(res, 'SELECT * FROM User WHERE username = "'+  baseModel.mysql.escape(user) +'" and boolean_deleted = 0');
+    baseModel.get(res, 'SELECT * FROM User WHERE username = '+ baseModel.mysql.escape(user) +' and boolean_deleted = 0');
 }
 
 exports.login = function(res, params)
