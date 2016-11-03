@@ -7,30 +7,31 @@ exports.index = function(res) {
 
 exports.show = function(res, id)
 {
-    baseModel.get(res, "SELECT * from User WHERE user_id = " + id);
+    baseModel.get(res, "SELECT * from User WHERE user_id = " +  baseModel.mysql.escape(id));
 }
 
 exports.find = function(res, user)
 {
-    baseModel.get(res, 'SELECT * FROM User WHERE username = "'+ user +'" and boolean_deleted = 0');
+    baseModel.get(res, 'SELECT * FROM User WHERE username = '+ baseModel.mysql.escape(user) +' and boolean_deleted = 0');
 }
 
 exports.login = function(res, params)
 {
-    baseModel.get(res, 'SELECT * FROM User WHERE username = "'+ params.username +'" and password = "'+ params.password +'" and boolean_deleted = 0');
+    var params = [params.username, params.password];
+    baseModel.get(res, 'SELECT * FROM User WHERE username = ? and password = ? and boolean_deleted = 0', params);
 }
 
 exports.store = function(res, params) 
 {
-    baseModel.send(res, "INSERT INTO User(username, password, email, date_of_birth) VALUES ('"+params.username+"', '"+params.password+"', '"+params.email+"', '"+params.date+"')");    
+    baseModel.send(res, "INSERT INTO User SET ?", params);    
 }
 
-exports.update = function(res, params) 
+exports.update = function(res, params, id) 
 {
-    baseModel.send(res, "UPDATE User SET username = '"+params.username+"', password = '"+params.password+"', email = '"+params.email+"', date_of_birth = '"+params.date_of_birth+"', admin =  "+params.admin+" WHERE user_id = '+params.user_id+'");     
+    baseModel.send(res, "UPDATE User SET ? WHERE user_id = " +  baseModel.mysql.escape(id), params);     
 }
 
 exports.destroy = function(res, id) 
 {
-    baseModel.send(res, "UPDATE User SET boolean_deleted = 1 WHERE user_id = " + id);     
+    baseModel.send(res, "UPDATE User SET boolean_deleted = 1 WHERE user_id = " +  baseModel.mysql.escape(id));     
 }
