@@ -3,7 +3,7 @@ mysql = require('mysql');
 
 exports.mysql = mysql;
 
-exports.get = function(res, executingQuery, parameters = [])
+exports.get = function(res, executingQuery, parameters)
 {
     connection.connection.query(executingQuery, parameters, function(error, rows, fields) 
     {
@@ -11,7 +11,7 @@ exports.get = function(res, executingQuery, parameters = [])
     });
 }
 
-exports.send = function(res, executingQuery, parameters = [])
+exports.send = function(res, executingQuery, parameters)
 {
     connection.connection.query(executingQuery, parameters, function(error, result)
     {
@@ -19,7 +19,7 @@ exports.send = function(res, executingQuery, parameters = [])
     });
 }
 
-exports.getData = function(res, executingQuery, callback, parameters = [])
+exports.getData = function(res, executingQuery, callback, parameters)
 {
     connection.connection.query(executingQuery, parameters, function(error, rows, fields) 
     {
