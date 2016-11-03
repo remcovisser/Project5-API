@@ -31,7 +31,7 @@ module.exports = {
 
   update: function(req, res, next) {
     var data = JSON.parse(req.body);
-    userModel.update(res, data);
+    userModel.update(res, data, req.params.id);
     next();
   },
 

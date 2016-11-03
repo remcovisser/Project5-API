@@ -1,24 +1,27 @@
 var connection = require(__base + '/database');
+mysql = require('mysql');
 
-exports.get = function(res, executingQuery)
+exports.mysql = mysql;
+
+exports.get = function(res, executingQuery, parameters = [])
 {
-    connection.connection.query(executingQuery, function(error, rows, fields) 
+    connection.connection.query(executingQuery, parameters, function(error, rows, fields) 
     {
         error == null ? res.send(rows) : res.send(error);
     });
 }
 
-exports.send = function(res, executingQuery)
+exports.send = function(res, executingQuery, parameters = [])
 {
-    connection.connection.query(executingQuery, function(error, result)
+    connection.connection.query(executingQuery, parameters, function(error, result)
     {
         error == null ? res.send("Query has been executed") : res.send(error);
     });
 }
 
-exports.getData = function(res, executingQuery, callback)
+exports.getData = function(res, executingQuery, callback, parameters = [])
 {
-    connection.connection.query(executingQuery, function(error, rows, fields) 
+    connection.connection.query(executingQuery, parameters, function(error, rows, fields) 
     {
         if(error == null) {
             return callback(rows.slice());
