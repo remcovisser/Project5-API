@@ -2,7 +2,7 @@ var baseModel = require(__base + '/Models/BaseModel');
 
 
 exports.index = function(res) {
-    baseModel.get(res, "SELECT * from User");
+    baseModel.get(res, "SELECT * from User WHERE boolean_deleted = 0");
 }
 
 exports.show = function(res, id)
