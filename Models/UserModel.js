@@ -12,13 +12,13 @@ exports.show = function(res, id)
 
 exports.find = function(res, user)
 {
-    baseModel.get(res, 'SELECT * FROM User WHERE username = '+ baseModel.mysql.escape(user) +' and boolean_deleted = 0');
+    baseModel.get(res, 'SELECT * FROM User WHERE username = '+ baseModel.mysql.escape(user) +' and boolean_deleted = 0 AND boolean_banned = 0');
 }
 
 exports.login = function(res, params)
 {
     var params = [params.username, params.password];
-    baseModel.get(res, 'SELECT * FROM User WHERE username = ? and password = ? and boolean_deleted = 0', params);
+    baseModel.get(res, 'SELECT * FROM User WHERE username = ? and password = ? and boolean_deleted = 0 AND boolean_banned = 0', params);
 }
 
 exports.store = function(res, params) 
