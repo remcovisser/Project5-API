@@ -2,7 +2,7 @@ var baseModel = require(__base + '/Models/BaseModel');
 
 
 exports.index = function(res) {
-    baseModel.get(res, "SELECT * from User");
+    baseModel.get(res, "SELECT * from User WHERE boolean_deleted = 0");
 }
 
 exports.show = function(res, id)
@@ -18,7 +18,7 @@ exports.find = function(res, user)
 exports.login = function(res, params)
 {
     var params = [params.username, params.password];
-    baseModel.get(res, 'SELECT * FROM User WHERE username = ? and password = ? and boolean_deleted = 0', params);
+    baseModel.get(res, 'SELECT * FROM User WHERE username = ? and password = ? and boolean_deleted = 0 AND boolean_banned = 0', params);
 }
 
 exports.store = function(res, params) 
