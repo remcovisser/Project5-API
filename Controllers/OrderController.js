@@ -28,4 +28,10 @@ module.exports = {
     // TODO Delete orderLines
     next();
   },
+
+  last: function(req, res, next) {
+    orderModel.last(res, req.params.id);
+    next();
+  },
+
 };

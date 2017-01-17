@@ -7,7 +7,7 @@ exports.get = function(res, executingQuery, parameters)
 {
     connection.connection.query(executingQuery, parameters, function(error, rows, fields) 
     {
-            error == null ? res.send(rows) : res.send(error);
+        error == null ? res.send(rows) : res.send(error);
     });
 }
 

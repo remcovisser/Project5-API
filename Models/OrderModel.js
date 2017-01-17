@@ -24,5 +24,10 @@ module.exports = {
     destroy: function(res, id)
     {
         baseModel.send(res, "UPDATE Orders SET boolean_deleted = 1 WHERE order_id = " + baseModel.mysql.escape(id));
+    },
+
+    lsat: function(res)
+    {
+        baseModel.last(res, "SELECT order_id from Orders WHERE boolean_deleted = 0 ORDER BY order_id DESC LIMIT 1");
     }
 };

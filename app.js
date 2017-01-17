@@ -110,6 +110,7 @@ server.get('orders/:id', orderController.show);
 server.post('orders/create', orderController.store);
 server.put('orders/:id', orderController.update);
 server.del('orders/:id', orderController.destroy);
+server.get('orders/last', orderController.last);
 
 // OrderLines
 server.get('orderlines', orderLinesController.index);
