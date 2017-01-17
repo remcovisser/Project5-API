@@ -50,7 +50,7 @@ var orderController = require('./Controllers/OrderController');
 var orderLinesController = require('./Controllers/OrderLinesController');
 var productCategoryController = require('./Controllers/ProductCategoryController');
 var streetController = require('./Controllers/StreetController');
-var userAddressController = require('./Controllers/UserAddressController');
+var addressController = require('./Controllers/AddressController');
 var wishlistController = require('./Controllers/WishlistController');
 var adminController = require('./Controllers/AdminController');
 
@@ -81,6 +81,7 @@ server.del('categories/:id', categoryController.destroy);
 // Cities
 server.get('cities', cityController.index);
 server.get('cities/:id', cityController.show);
+server.get('cities/exists/:name', cityController.exists);
 server.post('cities/create', cityController.store);
 server.put('cities/:id', cityController.update);
 server.del('cities/:id', cityController.destroy);
@@ -88,6 +89,7 @@ server.del('cities/:id', cityController.destroy);
 // Countries
 server.get('countries', countryController.index);
 server.get('countries/:id', countryController.show);
+server.get('countries/exists/:name', countryController.exists);
 server.post('countries/create', countryController.store);
 server.put('countries/:id', countryController.update);
 server.del('countries/:id', countryController.destroy);
@@ -127,17 +129,18 @@ server.del('productcategory/:product_id/:category_id', productCategoryController
 // Streets
 server.get('streets', streetController.index);
 server.get('streets/:id', streetController.show);
+server.get('streets/exists/:name', streetController.exists);
 server.post('streets/create', streetController.store);
 server.put('streets/:id', streetController.update);
 server.del('streets/:id', streetController.destroy);
 
-// UserAddress
-server.get('useraddress', userAddressController.index);
-server.get('useraddress/user/:address_id', userAddressController.getUsers);
-server.get('useraddress/address/:user_id', userAddressController.getAddresses);
-server.post('useraddress/create', userAddressController.store);
-server.put('useraddress/:user_id/:address_id', userAddressController.update);
-server.del('useraddress/:user_id/:address_id', userAddressController.destroy);
+// Address
+server.get('address', addressController.index);
+server.get('address/:id', addressController.show);
+server.get('address/exists/:street_id/:city_id/:country_id/:postal_code/:housenumber', addressController.exists);
+server.post('address/create', addressController.store);
+server.put('address/:user_id/:address_id', addressController.update);
+server.del('address/:user_id/:address_id', addressController.destroy);
 
 // Wishlist
 server.get('wishlist', wishlistController.index);

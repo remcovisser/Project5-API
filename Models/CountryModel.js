@@ -11,6 +11,11 @@ module.exports = {
         baseModel.get(res, "SELECT * from Country WHERE country_id = "+baseModel.mysql.escape(id)+" AND boolean_deleted = 0");
     },
 
+    exists: function(res, name)
+    {
+        baseModel.get(res, "SELECT * from Country WHERE country = "+baseModel.mysql.escape(name)+" AND boolean_deleted = 0");
+    },
+
     store: function(res, params)
     {
         baseModel.send(res, "INSERT INTO Country SET ?", params);

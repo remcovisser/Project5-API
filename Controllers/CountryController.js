@@ -11,6 +11,11 @@ module.exports = {
     next();
   },
 
+  exists: function(req, res, next) {
+    countryModel.exists(res, req.params.name);
+    next();
+  },
+
   store: function(req, res, next) {
     var data = JSON.parse(req.body); 
     countryModel.store(res, data);

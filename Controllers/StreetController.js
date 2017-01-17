@@ -11,6 +11,11 @@ module.exports = {
     next();
   },
 
+  exists: function(req, res, next) {
+    streetModel.exists(res, req.params.name);
+    next();
+  },
+
   store: function(req, res, next) {
     var data = JSON.parse(req.body); 
     streetModel.store(res, data);
