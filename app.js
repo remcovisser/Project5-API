@@ -107,6 +107,7 @@ server.del('favourites/:user_id/:product_id', favouriteController.destroy);
 // Orders
 server.get('orders', orderController.index);
 server.get('orders/last', orderController.last);
+server.get('orders/user/:user_id', orderController.user);
 server.get('orders/:id', orderController.show);
 server.post('orders/create', orderController.store);
 server.put('orders/:id', orderController.update);
@@ -114,6 +115,7 @@ server.del('orders/:id', orderController.destroy);
 
 // OrderLines
 server.get('orderlines', orderLinesController.index);
+server.get('orderlines/show-all/:order_id', orderLinesController.showAll);
 server.get('orderlines/:product_id/:order_id', orderLinesController.show);
 server.post('orderlines/create', orderLinesController.store);
 server.put('orderlines/:product_id/:order_id', orderLinesController.update);

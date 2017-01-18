@@ -11,6 +11,11 @@ module.exports = {
     next();
   },
 
+  showAll: function(req, res, next) {
+    orderLinesModel.showAll(res, req.params.order_id);
+    next();
+  },
+
   store: function(req, res, next) {
     var data = JSON.parse(req.body); 
     orderLinesModel.store(res, data);

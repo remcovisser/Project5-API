@@ -11,6 +11,11 @@ module.exports = {
         baseModel.get(res, "SELECT * from Order_lines WHERE product_id = "+baseModel.mysql.escape(product_id)+" AND order_id = "+baseModel.mysql.escape(order_id)+" AND boolean_deleted = 0");
     },
 
+    showAll: function(res, order_id)
+    {
+        baseModel.get(res, "SELECT * from Order_lines WHERE order_id = "+baseModel.mysql.escape(order_id)+" AND boolean_deleted = 0");
+    },
+
     store: function(res, params)
     {
         baseModel.send(res, "INSERT INTO Order_lines SET ?", params);

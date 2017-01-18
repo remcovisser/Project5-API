@@ -34,4 +34,9 @@ module.exports = {
     next();
   },
 
+  user: function(req, res, next) {
+    orderModel.user(res, req.params.user_id);
+    next();
+  },
+
 };
