@@ -6,6 +6,11 @@ module.exports = {
         baseModel.get(res, "SELECT * from Orders WHERE boolean_deleted = 0");
     },
 
+    last: function(res)
+    {
+        baseModel.get(res, "SELECT order_id from Orders WHERE boolean_deleted = 0 ORDER BY order_id DESC LIMIT 1");
+    },
+
     show: function(res, id)
     {
         baseModel.get(res, "SELECT * from Orders WHERE order_id = "+baseModel.mysql.escape(id)+" AND boolean_deleted = 0");
@@ -25,9 +30,4 @@ module.exports = {
     {
         baseModel.send(res, "UPDATE Orders SET boolean_deleted = 1 WHERE order_id = " + baseModel.mysql.escape(id));
     },
-
-    lsat: function(res)
-    {
-        baseModel.last(res, "SELECT order_id from Orders WHERE boolean_deleted = 0 ORDER BY order_id DESC LIMIT 1");
-    }
 };
