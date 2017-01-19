@@ -64,6 +64,6 @@ module.exports = {
             res.send(parsedData);
         };
 
-        baseModel.getData(res, "SELECT SUM(ol.product_price) as total, WEEK(o.order_date) as weekNumber FROM Order_lines as ol, Orders as o WHERE ol.order_id = o.order_id GROUP BY WEEK(o.order_date)", callback);
+        baseModel.getData(res, "SELECT SUM(ol.product_price * ol.quantity) as total, WEEK(o.order_date) as weekNumber FROM Order_lines as ol, Orders as o WHERE ol.order_id = o.order_id GROUP BY WEEK(o.order_date)", callback);
     }    
 };
