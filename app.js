@@ -150,8 +150,11 @@ server.del('address/:user_id/:address_id', addressController.destroy);
 server.get('wishlist', wishlistController.index);
 server.get('wishlist/users/:product_id', wishlistController.getUsers);
 server.get('wishlist/products/:user_id', wishlistController.getProducts);
+server.get('wishlist/:user_id', wishlistController.getHidden);
+server.get('wishlist/:user_id/:product_id', wishlistController.getWish);
 server.post('wishlist/create', wishlistController.store);
 server.put('wishlist/:user_id/:product_id', wishlistController.update);
+server.put('wishlist/:user_id', wishlistController.hide);
 server.del('wishlist/:user_id/:product_id', wishlistController.destroy);
 
 // Admin
