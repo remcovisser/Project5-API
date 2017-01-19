@@ -8,7 +8,7 @@ module.exports = {
 
     info: function(res, order_id)
     {
-        baseModel.get(res, "SELECT p.product_id, p.p_name, ol.quantity, ol.product_price FROM Order_lines as ol, Product as p, Orders as o WHERE o.order_id = "+baseModel.mysql.escape(order_id)+" AND ol.order_id = o.order_id AND ol.product_Id = p.product_id AND ol.boolean_deleted = 0 ");
+        baseModel.get(res, "SELECT p.product_id, p.p_name, ol.quantity, ol.product_price, ol.order_id, (SELECT COUNT(*) FROM Favourites f WHERE f.user_id = o.user_id AND f.product_id = p.product_id) as favourited FROM Order_lines as ol, Product as p, Orders as o WHERE o.order_id = "+baseModel.mysql.escape(order_id)+" AND ol.order_id = o.order_id AND ol.product_Id = p.product_id AND ol.boolean_deleted = 0 ");
     },
 
     show: function(res, product_id, order_id)
