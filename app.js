@@ -44,32 +44,6 @@ var adminController = require('./Controllers/AdminController');
 //authentication
 server.post('/auth',userController.logintoken);
 
-//jwt config and middleware every routes below is secure with token
-server.use(function(req, res, next) {
-	// check header or url parameters or post parameters for token
-  //var token = req.body.token || req.param('token') || req.headers['x-access-token'];
-	var token = req.headers.authorization;
-	// decode token
-	if (token) {
-		// verifies secret and checks exp
-		jwt.verify(token, all_vars.secret, function(err, decoded) {			
-			if (err) {
-				return res.json({ success: false, message: 'Failed to authenticate token.' });		
-			} else {
-				// if everything is good, save to request for use in other routes
-				req.decoded = decoded;	
-				next();
-			}
-		});
-	} else {
-		// if there is no token return an error
-		return res.send({ 
-			success: false, 
-			message: 'No token provided.'
-		});
-	}
-});
-
 // Users
 server.get('users', userController.index);
 server.get('users/:id', userController.show);
@@ -109,33 +83,6 @@ server.post('countries/create', countryController.store);
 server.put('countries/:id', countryController.update);
 server.del('countries/:id', countryController.destroy);
 
-// Favourites
-server.get('favourites', favouriteController.index);
-server.get('favourites/:user_id/products', favouriteController.getProducts);
-server.get('favourites/:product_id/users', favouriteController.getUsers);
-server.get('favourites/:user_id', favouriteController.show);
-server.get('favourites/:user_id/:product_id', favouriteController.showOne);
-server.post('favourites/create', favouriteController.store);
-server.put('favourites/:user_id/:product_id', favouriteController.update);
-server.del('favourites/:user_id/:product_id', favouriteController.destroy);
-
-// Orders
-server.get('orders', orderController.index);
-server.get('orders/last', orderController.last);
-server.get('orders/user/:user_id', orderController.user);
-server.get('orders/:id', orderController.show);
-server.post('orders/create', orderController.store);
-server.put('orders/:id', orderController.update);
-server.del('orders/:id', orderController.destroy);
-
-// OrderLines
-server.get('orderlines', orderLinesController.index);
-server.get('orderlines/info/:order_id', orderLinesController.info);
-server.get('orderlines/show-all/:order_id', orderLinesController.showAll);
-server.get('orderlines/:product_id/:order_id', orderLinesController.show);
-server.post('orderlines/create', orderLinesController.store);
-server.put('orderlines/:product_id/:order_id', orderLinesController.update);
-server.del('orderlines/:product_id/:order_id', orderLinesController.destroy);
 
 // ProductCategory
 server.get('productcategory', productCategoryController.index);
@@ -171,6 +118,60 @@ server.post('wishlist/create', wishlistController.store);
 server.put('wishlist/:user_id/:product_id', wishlistController.update);
 server.put('wishlist/:user_id', wishlistController.hide);
 server.del('wishlist/:user_id/:product_id', wishlistController.destroy);
+
+//jwt config and middleware every routes below is secure with token
+server.use(function(req, res, next) {
+	// check header or url parameters or post parameters for token
+  //var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+	var token = req.headers.authorization;
+	// decode token
+	if (token) {
+		// verifies secret and checks exp
+		jwt.verify(token, all_vars.secret, function(err, decoded) {			
+			if (err) {
+				return res.json({ success: false, message: 'Failed to authenticate token.' });		
+			} else {
+				// if everything is good, save to request for use in other routes
+				req.decoded = decoded;	
+				next();
+			}
+		});
+	} else {
+		// if there is no token return an error
+		return res.send({ 
+			success: false, 
+			message: 'No token provided.'
+		});
+	}
+});
+
+// Favourites
+server.get('favourites', favouriteController.index);
+server.get('favourites/:user_id/products', favouriteController.getProducts);
+server.get('favourites/:product_id/users', favouriteController.getUsers);
+server.get('favourites/:user_id', favouriteController.show);
+server.get('favourites/:user_id/:product_id', favouriteController.showOne);
+server.post('favourites/create', favouriteController.store);
+server.put('favourites/:user_id/:product_id', favouriteController.update);
+server.del('favourites/:user_id/:product_id', favouriteController.destroy);
+
+// Orders
+server.get('orders', orderController.index);
+server.get('orders/last', orderController.last);
+server.get('orders/user/:user_id', orderController.user);
+server.get('orders/:id', orderController.show);
+server.post('orders/create', orderController.store);
+server.put('orders/:id', orderController.update);
+server.del('orders/:id', orderController.destroy);
+
+// OrderLines
+server.get('orderlines', orderLinesController.index);
+server.get('orderlines/info/:order_id', orderLinesController.info);
+server.get('orderlines/show-all/:order_id', orderLinesController.showAll);
+server.get('orderlines/:product_id/:order_id', orderLinesController.show);
+server.post('orderlines/create', orderLinesController.store);
+server.put('orderlines/:product_id/:order_id', orderLinesController.update);
+server.del('orderlines/:product_id/:order_id', orderLinesController.destroy);
 
 // Admin
 server.get('admin/registered-users', adminController.registeredUsers);
