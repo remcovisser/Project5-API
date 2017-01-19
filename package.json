@@ -9,6 +9,7 @@
   "dependencies": {
     "mysql": "^2.11.1",
     "restify": "^4.3.0",
-    "jsonwebtoken": "^5.7.0"
+    "jsonwebtoken": "^5.7.0",
+    "node-cache" : "^4.1.1"
   }
 }

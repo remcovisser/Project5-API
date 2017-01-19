@@ -3,7 +3,17 @@ var baseModel = require(__base + '/Models/BaseModel');
 module.exports = {
     index: function(res)
     {
-        baseModel.get(res, "SELECT * from Product WHERE boolean_deleted = 0");
+        __cache.get( "product-index", function( err, value ){
+            if(!err && value == undefined){
+                var callback = function(data) {
+                    __cache.set("product-index", data, 3600);
+                    res.send(data);
+                }
+                baseModel.getData(res, "SELECT * from Product WHERE boolean_deleted = 0", callback);
+            } else {
+                return res.send(value); 
+            }  
+        });
     },
 
     show: function(res, id)
