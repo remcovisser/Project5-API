@@ -6,6 +6,11 @@ module.exports = {
     next();
   },
 
+  info: function(req, res, next) {
+    orderLinesModel.info(res, req.params.order_id);
+    next();
+  },
+
   show: function(req, res, next) {
     orderLinesModel.show(res, req.params.product_id, req.params.order_id);
     next();
