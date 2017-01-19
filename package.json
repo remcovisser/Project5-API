@@ -8,9 +8,7 @@
   },
   "dependencies": {
     "mysql": "^2.11.1",
-    "node-session": "^1.2.1",
-    "passport": "^0.3.2",
-    "passport-http": "^0.3.0",
-    "restify": "^4.2.0"
+    "restify": "^4.3.0",
+    "jsonwebtoken": "^5.7.0"
   }
 }

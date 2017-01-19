@@ -1,5 +1,8 @@
 // Import UserModdel
 var userModel = require(__base + '/Models/UserModel');
+var baseModel = require(__base + '/Models/BaseModel');
+var jwt = require('jsonwebtoken');
+var all_vars = require(__base + '//var.js');
 
 module.exports = {
 
@@ -20,6 +23,30 @@ module.exports = {
 
   login : function(req, res, next){
     userModel.login(res, req.params);
+    next();
+  },
+
+ logintoken : function(req, res, next){
+    var executingQuery = 'SELECT * FROM User WHERE username = "'+ req.params.username +'"  and password = "'+ req.params.password +'" and boolean_deleted = 0 AND boolean_banned = 0';
+
+    var callback = function(data) {
+     if (data.length == 0) {
+        res.json({ success: false, message: 'Authentication failed. User not found.' });
+      } else if (data.length == 1) {
+          // if user is found and password is right
+          // create a token
+          var token = jwt.sign(data, all_vars.secret, {
+            expiresIn: 86400 // expires in 24 hours
+          });
+
+          res.json({
+            success: true,
+            message: 'Enjoy your token!',
+            token: token
+          });
+      }
+    }
+    baseModel.getData(res, executingQuery, callback);
     next();
   },
 
