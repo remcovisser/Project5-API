@@ -1,21 +1,8 @@
 var restify = require('restify'),
     fs = require('fs'),
     mysql = require('mysql'),
-    passport = require('passport'),
-    basicstrategy = require('passport-http').BasicStrategy,
-    NodeSession = require('node-session');
-
-passport.use(new basicstrategy(
-  function(username, password, done) {
-    if (username.valueOf() === 'root' &&
-      password.valueOf() === 'root')
-      return done(null, true);
-    else
-      return done(null, false);
-  }
-));
-
-session = new NodeSession({secret: 'Q3UBzdH9GEfiRCTKbi5MTPyChpzXLsTD'});
+    jwt = require('jsonwebtoken'),
+    all_vars = require(__dirname + '//var.js');
 
 // Set a global variable for the root directory
 global.__base = __dirname + '/';
@@ -37,7 +24,6 @@ server.listen(8080, function() {
 // Set the server options
 server.use(restify.CORS());
 server.use(restify.bodyParser());
-server.use(passport.initialize()); 
 
 // Import controllers
 var userController = require('./Controllers/UserController');
@@ -55,6 +41,35 @@ var wishlistController = require('./Controllers/WishlistController');
 var adminController = require('./Controllers/AdminController');
 
 // -------------- Routes ---------------
+//authentication
+server.post('/auth',userController.logintoken);
+
+//jwt config and middleware every routes below is secure with token
+server.use(function(req, res, next) {
+	// check header or url parameters or post parameters for token
+  //var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+	var token = req.headers.authorization;
+	// decode token
+	if (token) {
+		// verifies secret and checks exp
+		jwt.verify(token, all_vars.secret, function(err, decoded) {			
+			if (err) {
+				return res.json({ success: false, message: 'Failed to authenticate token.' });		
+			} else {
+				// if everything is good, save to request for use in other routes
+				req.decoded = decoded;	
+				next();
+			}
+		});
+	} else {
+		// if there is no token return an error
+		return res.send({ 
+			success: false, 
+			message: 'No token provided.'
+		});
+	}
+});
+
 // Users
 server.get('users', userController.index);
 server.get('users/:id', userController.show);
@@ -161,23 +176,3 @@ server.del('wishlist/:user_id/:product_id', wishlistController.destroy);
 server.get('admin/registered-users', adminController.registeredUsers);
 server.get('admin/best-selling-products/:amount', adminController.bestSellingProducts);
 server.get('admin/sumorders', adminController.sumOrders);
-
-//authenticate example
-server.get('/testget', passport.authenticate('basic', { session: false }), 
-          function (req, res, next) {
-              res.redirect('www.google.com', next);
-          });
-server.post('/testpost', passport.authenticate('basic', { session: false }), userController.index);
-
-//Test session
-var x = function(a){console.log("session staat aan")}
-var j = function(a){console.log("session staat uit")}
-          
-server.get('/sessionon', passport.authenticate('basic', { session: false }), 
-          function (req, res, next) {
-              session.startSession(req, res, x);
-          });
-server.get('/sessionoff', passport.authenticate('basic', { session: false }), 
-          function (req, res, next) {
-              session.startSession(req, res, j);
-          });
