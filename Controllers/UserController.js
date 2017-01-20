@@ -42,6 +42,11 @@ module.exports = {
           res.json({
             message: 'Enjoy your token!',
             success: 'true',
+            "user_id": data[0].user_id,
+            "username": data[0].username,
+            "email": data[0].email,
+            "date": data[0].date_of_birth,
+            "admin": data[0].admin,
             token: token
           });
       }
