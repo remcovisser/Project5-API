@@ -40,8 +40,8 @@ module.exports = {
           });
 
           res.json({
-            success: true,
             message: 'Enjoy your token!',
+            success: 'true',
             token: token
           });
       }
