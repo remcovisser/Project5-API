@@ -9,7 +9,7 @@ module.exports = {
   show: function(req, res, next) {
     favouriteModel.show(res, req.params.user_id);
     next();
-  },
+  },  
 
   showOne: function(req, res, next) {
     favouriteModel.showOne(res, req.params.user_id, req.params.product_id);

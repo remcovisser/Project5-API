@@ -2,10 +2,12 @@ var restify = require('restify'),
     fs = require('fs'),
     mysql = require('mysql'),
     jwt = require('jsonwebtoken'),
-    all_vars = require(__dirname + '//var.js');
+    all_vars = require(__dirname + '//var.js'),
+	nodeCache = require('node-cache');
 
 // Set a global variable for the root directory
 global.__base = __dirname + '/';
+global.__cache = new nodeCache();
 
 // Set headers to allow XHR requests from a different port
 restify.CORS.ALLOW_HEADERS.push('accept');
@@ -119,31 +121,8 @@ server.put('wishlist/:user_id/:product_id', wishlistController.update);
 server.put('wishlist/:user_id', wishlistController.hide);
 server.del('wishlist/:user_id/:product_id', wishlistController.destroy);
 
-//jwt config and middleware every routes below is secure with token
-server.use(function(req, res, next) {
-	// check header or url parameters or post parameters for token
-  //var token = req.body.token || req.param('token') || req.headers['x-access-token'];
-	var token = req.headers.authorization;
-	// decode token
-	if (token) {
-		// verifies secret and checks exp
-		jwt.verify(token, all_vars.secret, function(err, decoded) {			
-			if (err) {
-				return res.json({ success: false, message: 'Failed to authenticate token.' });		
-			} else {
-				// if everything is good, save to request for use in other routes
-				req.decoded = decoded;	
-				next();
-			}
-		});
-	} else {
-		// if there is no token return an error
-		return res.send({ 
-			success: false, 
-			message: 'No token provided.'
-		});
-	}
-});
+
+// ----- These calls need to be below the auth check
 
 // Favourites
 server.get('favourites', favouriteController.index);
@@ -177,3 +156,31 @@ server.del('orderlines/:product_id/:order_id', orderLinesController.destroy);
 server.get('admin/registered-users', adminController.registeredUsers);
 server.get('admin/best-selling-products/:amount', adminController.bestSellingProducts);
 server.get('admin/sumorders', adminController.sumOrders);
+
+
+//jwt config and middleware every routes below is secure with token
+server.use(function(req, res, next) {
+	// check header or url parameters or post parameters for token
+  //var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+	var token = req.headers.authorization;
+	// decode token
+	if (token) {
+		// verifies secret and checks exp
+		jwt.verify(token, all_vars.secret, function(err, decoded) {			
+			if (err) {
+				return res.json({ success: false, message: 'Failed to authenticate token.' });		
+			} else {
+				// if everything is good, save to request for use in other routes
+				req.decoded = decoded;	
+				next();
+			}
+		});
+	} else {
+		// if there is no token return an error
+		return res.send({ 
+			success: false, 
+			message: 'No token provided.'
+		});
+	}
+});
+
