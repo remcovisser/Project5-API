@@ -61,6 +61,7 @@ server.get('products/:id', productController.show);
 server.post('products/create', productController.store);
 server.put('products/:id', productController.update);
 server.del('products/:id', productController.destroy);
+server.get('products/recommended/:id', productController.recommended);
 
 // Categories
 server.get('categories', categoryController.index);

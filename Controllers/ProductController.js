@@ -27,4 +27,9 @@ module.exports = {
     productModel.destroy(res, req.params.id);
     next();
   },
+
+  recommended: function(req, res, next) {
+    productModel.recommended(res, req.params.id);
+    next();
+  },
 };
