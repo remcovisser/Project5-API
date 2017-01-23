@@ -3,11 +3,13 @@ var restify = require('restify'),
     mysql = require('mysql'),
     jwt = require('jsonwebtoken'),
     all_vars = require(__dirname + '//var.js'),
-	nodeCache = require('node-cache');
+	nodeCache = require('node-cache'),
+	validator = require(__dirname + '//validator.js');
 
-// Set a global variable for the root directory
+// Set a global variables
 global.__base = __dirname + '/';
 global.__cache = new nodeCache();
+global.__validate = validator;
 
 // Set headers to allow XHR requests from a different port
 restify.CORS.ALLOW_HEADERS.push('accept');
