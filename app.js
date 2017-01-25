@@ -18,7 +18,7 @@ restify.CORS.ALLOW_HEADERS.push('lang');
 restify.CORS.ALLOW_HEADERS.push('origin');
 restify.CORS.ALLOW_HEADERS.push('withcredentials');
 restify.CORS.ALLOW_HEADERS.push('x-requested-with');
-restify.CORS.ALLOW_HEADERS.push('Authentication');
+restify.CORS.ALLOW_HEADERS.push('authorization');
 
 
 // Setup the server
@@ -165,7 +165,7 @@ server.get('admin/sumorders', adminController.sumOrders);
 server.use(function(req, res, next) {
 	// check header or url parameters or post parameters for token
   //var token = req.body.token || req.param('token') || req.headers['x-access-token'];
-	var token = req.headers.authorization;
+	var token = req.headers['authorization'];
 	// decode token
 	if (token) {
 		// verifies secret and checks exp 
