@@ -164,8 +164,8 @@ server.get('admin/sumorders', adminController.sumOrders);
 //jwt config and middleware every routes below is secure with token
 server.use(function(req, res, next) {
 	// check header or url parameters or post parameters for token
-  //var token = req.body.token || req.param('token') || req.headers['x-access-token'];
-	var token = req.headers.authorization;
+    //var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+	var token = req.headers['authorization'];
 	// decode token
 	if (token) {
 		// verifies secret and checks exp 
