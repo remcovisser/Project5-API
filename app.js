@@ -18,6 +18,8 @@ restify.CORS.ALLOW_HEADERS.push('lang');
 restify.CORS.ALLOW_HEADERS.push('origin');
 restify.CORS.ALLOW_HEADERS.push('withcredentials');
 restify.CORS.ALLOW_HEADERS.push('x-requested-with');
+restify.CORS.ALLOW_HEADERS.push('Authentication');
+
 
 // Setup the server
 var server = restify.createServer();
@@ -155,11 +157,9 @@ server.post('orderlines/create', orderLinesController.store);
 server.put('orderlines/:product_id/:order_id', orderLinesController.update);
 server.del('orderlines/:product_id/:order_id', orderLinesController.destroy);
 
-// Admin
-server.get('admin/registered-users', adminController.registeredUsers);
+//admin
 server.get('admin/best-selling-products/:amount', adminController.bestSellingProducts);
 server.get('admin/sumorders', adminController.sumOrders);
-
 
 //jwt config and middleware every routes below is secure with token
 server.use(function(req, res, next) {
@@ -168,7 +168,7 @@ server.use(function(req, res, next) {
 	var token = req.headers.authorization;
 	// decode token
 	if (token) {
-		// verifies secret and checks exp
+		// verifies secret and checks exp 
 		jwt.verify(token, all_vars.secret, function(err, decoded) {			
 			if (err) {
 				return res.json({ success: false, message: 'Failed to authenticate token.' });		
@@ -187,3 +187,6 @@ server.use(function(req, res, next) {
 	}
 });
 
+
+// Admin
+server.get('admin/registered-users', adminController.registeredUsers);
