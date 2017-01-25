@@ -18,7 +18,6 @@ restify.CORS.ALLOW_HEADERS.push('lang');
 restify.CORS.ALLOW_HEADERS.push('origin');
 restify.CORS.ALLOW_HEADERS.push('withcredentials');
 restify.CORS.ALLOW_HEADERS.push('x-requested-with');
-restify.CORS.ALLOW_HEADERS.push('Authentication');
 
 
 // Setup the server
