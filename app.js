@@ -23,8 +23,9 @@ restify.CORS.ALLOW_HEADERS.push('authorization');
 
 // Setup the server
 var server = restify.createServer();
+global.app = server;
 server.listen(9000, function() {
-  console.log('%s listening at %s', server.name, server.url);
+  //console.log('%s listening at %s', server.name, server.url);
 });
 
 // Set the server options

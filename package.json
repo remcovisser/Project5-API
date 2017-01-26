@@ -11,6 +11,8 @@
     "restify": "^4.3.0",
     "jsonwebtoken": "^5.7.0",
     "node-cache" : "^4.1.1",
-    "requestify" : "^0.2.5"
+    "requestify" : "^0.2.5",
+    "hippie": "0.5.1",
+    "mocha": "^3.2.0"
   }
 }
