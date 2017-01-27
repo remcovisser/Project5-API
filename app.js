@@ -10,6 +10,7 @@ var restify = require('restify'),
 global.__base = __dirname + '/';
 global.__cache = new nodeCache();
 global.__validate = validator;
+global.__testing = false;
 
 // Set headers to allow XHR requests from a different port
 restify.CORS.ALLOW_HEADERS.push('accept');
@@ -23,9 +24,8 @@ restify.CORS.ALLOW_HEADERS.push('Authentication');
 
 // Setup the server
 var server = restify.createServer();
-global.app = server;
 server.listen(9000, function() {
-  //console.log('%s listening at %s', server.name, server.url);
+  console.log('%s listening at %s', server.name, server.url);
 });
 
 // Set the server options

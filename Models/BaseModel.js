@@ -1,12 +1,16 @@
-var connection = require(__base + '/database');
 mysql = require('mysql');
+if(__testing)
+    var connection = require(__base + '/database_test');
+else 
+    var connection = require(__base + '/database');
+
 
 exports.mysql = mysql;
 
 exports.get = function(res, executingQuery, parameters)
 {
     connection.connection.query(executingQuery, parameters, function(error, rows, fields) 
-    {
+    {  
         error == null ?  res.send(rows) : res.send(error);
     });
 }
