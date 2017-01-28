@@ -23,7 +23,8 @@ server.use(restify.bodyParser());
 
 // Import controllers
 var favouriteController = require('./Controllers/FavouriteController');
-
+var orderController = require('./Controllers/OrderController');
+var orderLinesController = require('./Controllers/OrderLinesController');
 
 
 // Favourites
@@ -35,3 +36,21 @@ server.get('favourites/:user_id/:product_id', favouriteController.showOne);
 server.post('favourites/create', favouriteController.store);
 server.put('favourites/:user_id/:product_id', favouriteController.update);
 server.del('favourites/:user_id/:product_id', favouriteController.destroy);
+
+// Orders
+server.get('orders', orderController.index);
+server.get('orders/last', orderController.last);
+server.get('orders/user/:user_id', orderController.user);
+server.get('orders/:id', orderController.show);
+server.post('orders/create', orderController.store);
+server.put('orders/:id', orderController.update);
+server.del('orders/:id', orderController.destroy);
+
+// OrderLines
+server.get('orderlines', orderLinesController.index);
+server.get('orderlines/info/:order_id', orderLinesController.info);
+server.get('orderlines/show-all/:order_id', orderLinesController.showAll);
+server.get('orderlines/:product_id/:order_id', orderLinesController.show);
+server.post('orderlines/create', orderLinesController.store);
+server.put('orderlines/:product_id/:order_id', orderLinesController.update);
+server.del('orderlines/:product_id/:order_id', orderLinesController.destroy);
