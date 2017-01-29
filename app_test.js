@@ -26,6 +26,9 @@ var favouriteController = require('./Controllers/FavouriteController');
 var orderController = require('./Controllers/OrderController');
 var orderLinesController = require('./Controllers/OrderLinesController');
 
+var userController = require('./Controllers/UserController');
+var wishlistController = require('./Controllers/WishlistController');
+
 
 // Favourites
 server.get('favourites', favouriteController.index);
@@ -54,3 +57,23 @@ server.get('orderlines/:product_id/:order_id', orderLinesController.show);
 server.post('orderlines/create', orderLinesController.store);
 server.put('orderlines/:product_id/:order_id', orderLinesController.update);
 server.del('orderlines/:product_id/:order_id', orderLinesController.destroy);
+
+// Users
+server.get('users', userController.index);
+server.get('users/:id', userController.show);
+server.get('users/:username/find', userController.find);
+server.get('users/:username/:password', userController.login);
+server.post('users/create', userController.store);
+server.put('users/:id', userController.update);
+server.del('users/:id', userController.destroy);
+
+// Wishlist
+server.get('wishlist', wishlistController.index);
+server.get('wishlist/products/:user_id', wishlistController.getProducts);
+server.get('wishlist/:user_id', wishlistController.getHidden);
+server.get('wishlist/:user_id/:product_id', wishlistController.getWish);
+server.post('wishlist/create', wishlistController.store);
+server.put('wishlist/:user_id/:product_id', wishlistController.update);
+server.put('wishlist/:user_id', wishlistController.hide);
+server.del('wishlist/:user_id/:product_id', wishlistController.destroy);
+
