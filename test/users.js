@@ -4,6 +4,7 @@ var hippie = require('hippie');
 
 describe('/users', function () {
 
+
   it('Get all users', function (done) {
     hippie(app)
       .json()
@@ -88,51 +89,44 @@ describe('/users', function () {
       });
   });
 
-  it('Create a new user (not-admin)', function () {
+  it('Create a new user (not-admin)', function (done) {
     hippie(app)
       .json()
       .post('/users/create')
-      .send(JSON.stringify({ 
-        "user_id": 20,
-        "username": "newuser",
-        "password": "321",
-        "email": "new@sonew.nl",
-        "admin": 0,
-        "date_of_birth": "1999-10-10",
-        "create_date": "2017-01-29"
+      .send(JSON.stringify({
+        username: "new_user",
+        token: ""
       }))
       .expectStatus(200)
-      .expectBody('"Affected rows: 1"')
       .end(function(err, res, body) {
         if (err) throw err;
         done();
       });
   });
 
-  it('Update an user', function () {
+
+  it('Update an user', function (done) {
     hippie(app)
       .json()
-      .put('/users/2')
-      .expectStatus(200)
-      .send(JSON.stringify({ 
-        "user_id": 2,
-        "username": "meme",
-        "password": "321",
-        "email": "new@updated.nl"
+      .put('/users/6')
+      .send(JSON.stringify({
+        user_id: "6",
+        username: "hi_i_got_updated",
+        password: "321",
+        email: "new@updated.nl"
       }))
-      .expectBody('"Affected rows: 1"')
+      .expectStatus(200)
       .end(function(err, res, body) {
         if (err) throw err;
         done();
       });
   });
 
-  it('Delete an user', function () {
+  it('Delete an user', function (done) {
     hippie(app)
       .json()
       .del('/users/2')
       .expectStatus(200)
-      .expectBody('"Affected rows: 1"')
       .end(function(err, res, body) {
         if (err) throw err;
         done();
