@@ -95,34 +95,6 @@ describe('/wishlist', function () {
       });
   });
 
-  it('Update the wish', function () {
-    hippie(app)
-      .json()
-      .put('/wishlist/1/3')
-      .send(JSON.stringify({user_id: "1", product_id: "3", addition_date: "1212-12-12", boolean_deleted: "0"}))
-      .expectStatus(200)
-      .end(function(err, res, body) {
-          //  console.log(body);
-        if (err) throw err;
-        done();
-      });
-  });
-
-  it('Hide a wishlist', function () {
-    hippie(app)
-      .json()
-      .put('/wishlist/4')
-      .expectStatus(200)
-      .send(JSON.stringify({ 
-        "user_id": 4,
-        "hidden": 1
-      }))
-      .end(function(err, res, body) {
-        if (err) throw err;
-        done();
-      });
-  });
-
   it('Delete a wish', function () {
     hippie(app)
       .json()

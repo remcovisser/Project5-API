@@ -34,13 +34,13 @@ module.exports = {
 
   update: function(req, res, next) {
     var data = JSON.parse(req.body);
-    wishlistModel.update(res, data, data.user_id, data.product_id);
+    wishlistModel.update(res, data, req.params.user_id, req.params.product_id);
     next();
   },
   
   hide: function(req, res, next) {
     var data = JSON.parse(req.body);
-    wishlistModel.hide(res, data.hidden, data.user_id);
+    wishlistModel.hide(res, data.hidden, req.params.user_id);
     next();
   },
 
