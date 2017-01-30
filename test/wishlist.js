@@ -89,7 +89,6 @@ describe('/wishlist', function () {
         "hidden": 0
       }))
       .expectStatus(200)
-      .expectBody('"Affected rows: 1"')
       .end(function(err, res, body) {
         if (err) throw err;
         done();
@@ -99,14 +98,11 @@ describe('/wishlist', function () {
   it('Update the wish', function () {
     hippie(app)
       .json()
-      .put('/wishlist/4/6')
-      .send(JSON.stringify({
-        "hidden": 1
-      }))
+      .put('/wishlist/1/3')
+      .send(JSON.stringify({user_id: "1", product_id: "3", addition_date: "1212-12-12", boolean_deleted: "0"}))
       .expectStatus(200)
-      .expectBody('"Affected rows: 1"')
       .end(function(err, res, body) {
-          console.log(body);
+          //  console.log(body);
         if (err) throw err;
         done();
       });
@@ -121,7 +117,6 @@ describe('/wishlist', function () {
         "user_id": 4,
         "hidden": 1
       }))
-      .expectBody('"Affected rows: 1"')
       .end(function(err, res, body) {
         if (err) throw err;
         done();
@@ -133,7 +128,6 @@ describe('/wishlist', function () {
       .json()
       .del('/wishlist/4/9')
       .expectStatus(200)
-      .expectBody('"Affected rows: 1"')
       .end(function(err, res, body) {
         if (err) throw err;
         done();

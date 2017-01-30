@@ -56,21 +56,14 @@ module.exports = {
   },
 
   store: function(req, res, next) {
-    var data = JSON.parse(req.body);
-    __validate.uniqueUsername(data.username, callback)
-    function callback(result) {
-      if(result) {
-        userModel.store(res, data);
-      } else {
-          res.send(400, "Error, This username has already been taken.");
-      }
+      var data = JSON.parse(req.body);
+      userModel.store(res, data);
       next();
-    }
   },
 
   update: function(req, res, next) {
     var data = JSON.parse(req.body);
-    userModel.update(res, data, req.params.id);
+    userModel.update(res, data, data.user_id);
     next();
   },
 
