@@ -59,11 +59,7 @@ describe('Product backend is properly functioning', function () {
       .json()
       .get('/products')
       .expectStatus(200)
-      .expect(function(res, body, next) {
-          var array = JSON.parse(body);
-          var err = array.count >= 1;
-          next(err);
-      })
+      .expectBody([])
       .end(function(err, res, body) {
         if (err) throw err;
         done();
@@ -92,7 +88,7 @@ describe('Product backend is properly functioning', function () {
   it('Delete a product', function (done) {
     hippie(app)
       .json()
-      .del('/products/4')
+      .del('/products/3')
       .expectStatus(200)
       .expectBody('"Affected rows: 1"')
       .end(function(err, res, body) {
