@@ -57,8 +57,18 @@ module.exports = {
 
   store: function(req, res, next) {
       var data = JSON.parse(req.body);
-      userModel.store(res, data);
+      __validate.uniqueUsername(data.username, callback)
+
+      function callback(result) {
+        
+        if(result) {
+            userModel.store(res, data);
+        } else {
+            res.send(400, "Error, This username has already been taken.");
+        }
+
       next();
+      }
   },
 
   update: function(req, res, next) {
