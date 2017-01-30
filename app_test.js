@@ -28,6 +28,7 @@ var orderLinesController = require('./Controllers/OrderLinesController');
 var userController = require('./Controllers/UserController');
 var wishlistController = require('./Controllers/WishlistController');
 var adminController = require('./Controllers/AdminController');
+var productController = require('./Controllers/ProductController');
 
 // Favourites
 server.get('favourites', favouriteController.index);
@@ -84,6 +85,14 @@ server.post('wishlist/create', wishlistController.store);
 server.put('wishlist/:user_id/:product_id', wishlistController.update);
 server.put('wishlist/:user_id', wishlistController.hide);
 server.del('wishlist/:user_id/:product_id', wishlistController.destroy);
+
+//products
+server.get('products', productController.index);
+server.get('products/:id', productController.show);
+server.post('products/create', productController.store);
+server.put('products/:id', productController.update);
+server.del('products/:id', productController.destroy);
+server.get('products/recommended/:id', productController.recommended);
 
 //admin
 server.get('admin/registered-users', adminController.registeredUsers);
