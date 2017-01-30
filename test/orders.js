@@ -32,7 +32,7 @@ describe('/orders endpoint', function () {
       .json()
       .get('/orders/last')
       .expectStatus(200)
-      .expectBody([{order_id: 1}])
+      .expectBody([{order_id: 24}])
       .end(function(err, res, body) {
         if (err) throw err;
         done();
@@ -61,7 +61,7 @@ describe('/orders endpoint', function () {
   it('Delete an order', function (done) {
     hippie(app)
       .json()
-      .del('/orders/2')
+      .del('/orders/20')
       .expectStatus(200)
       .end(function(err, res, body) {
         if (err) throw err;
