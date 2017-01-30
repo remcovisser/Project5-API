@@ -25,10 +25,9 @@ server.use(restify.bodyParser());
 var favouriteController = require('./Controllers/FavouriteController');
 var orderController = require('./Controllers/OrderController');
 var orderLinesController = require('./Controllers/OrderLinesController');
-
 var userController = require('./Controllers/UserController');
 var wishlistController = require('./Controllers/WishlistController');
-
+var adminController = require('./Controllers/AdminController');
 
 // Favourites
 server.get('favourites', favouriteController.index);
@@ -86,3 +85,7 @@ server.put('wishlist/:user_id/:product_id', wishlistController.update);
 server.put('wishlist/:user_id', wishlistController.hide);
 server.del('wishlist/:user_id/:product_id', wishlistController.destroy);
 
+//admin
+server.get('admin/registered-users', adminController.registeredUsers);
+server.get('admin/best-selling-products/:amount', adminController.bestSellingProducts);
+server.get('admin/sumorders', adminController.sumOrders);
