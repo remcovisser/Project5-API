@@ -89,21 +89,6 @@ describe('/users', function () {
       });
   });
 
-  it('Create a new user (not-admin)', function (done) {
-    hippie(app)
-      .json()
-      .post('/users/create')
-      .send(JSON.stringify({
-        username: "new_user",
-        token: ""
-      }))
-      .expectStatus(200)
-      .end(function(err, res, body) {
-        if (err) throw err;
-        done();
-      });
-  });
-
 
   it('Update an user', function (done) {
     hippie(app)
