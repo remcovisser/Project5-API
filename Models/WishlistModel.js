@@ -8,7 +8,7 @@ module.exports = {
     
     getHidden: function(res, user_id)
     {
-        baseModel.get(res, "SELECT hidden from Wishlist where user_id = "+baseModel.mysql.escape(user_id));
+        baseModel.get(res, "SELECT hidden from Wishlist where user_id = "+baseModel.mysql.escape(user_id)+" AND boolean_deleted = 0");
     },
 
     getWish: function(res, user_id, product_id)

@@ -158,7 +158,8 @@ server.post('orderlines/create', orderLinesController.store);
 server.put('orderlines/:product_id/:order_id', orderLinesController.update);
 server.del('orderlines/:product_id/:order_id', orderLinesController.destroy);
 
-//admin
+// Admin
+server.get('admin/registered-users', adminController.registeredUsers);
 server.get('admin/best-selling-products/:amount', adminController.bestSellingProducts);
 server.get('admin/sumorders', adminController.sumOrders);
 
@@ -187,7 +188,3 @@ server.use(function(req, res, next) {
 		});
 	}
 });
-
-
-// Admin
-server.get('admin/registered-users', adminController.registeredUsers);
