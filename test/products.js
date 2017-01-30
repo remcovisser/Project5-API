@@ -4,7 +4,6 @@ var hippie = require('hippie');
 
 
 describe('Product backend is properly functioning', function () {
-
   it('Get a product by id', function (done) {
     hippie(app)
       .json()
@@ -12,14 +11,14 @@ describe('Product backend is properly functioning', function () {
       .expectStatus(200)
       .expectBody([{
           "product_id":1,
-          "p_name":"Test car",
-          "p_description":"Test car description",
-          "p_price":"1",
-          "p_brand":"Test",
-          "p_model":"Car",
-          "p_submodel":"AB",
-          "p_color":"Black",
-          "p_construction_year":2016,
+          "p_name":"test_product",
+          "p_description":"This is a test product",
+          "p_price":"100",
+          "p_brand":"brand",
+          "p_model":"model",
+          "p_submodel":"sub_model",
+          "p_color":"color",
+          "p_construction_year":2000,
           "p_image":"https://openclipart.org/image/2400px/svg_to_png/222252/feels.png",
           "boolean_deleted":0}
           ])
@@ -29,20 +28,20 @@ describe('Product backend is properly functioning', function () {
       });
   });
 
-  it('Create a new product', function () {
+    it('Create a new product', function () {
     hippie(app)
       .json()
       .post('/products/create')
       .send(JSON.stringify({ 
-         "product_id":2,
-          "p_name":"Test car 2",
-          "p_description":"Test car description 2",
-          "p_price":"11",
+          "product_id":4,
+          "p_name":"Test car",
+          "p_description":"Test car description",
+          "p_price":"1",
           "p_brand":"Test",
-          "p_model":"Car 2",
+          "p_model":"Car",
           "p_submodel":"AB",
           "p_color":"Black",
-          "p_construction_year":2012,
+          "p_construction_year":2016,
           "p_image":"https://openclipart.org/image/2400px/svg_to_png/222252/feels.png",
           "boolean_deleted":0
       }))
@@ -54,6 +53,7 @@ describe('Product backend is properly functioning', function () {
       });
   });
 
+
   it('List all products', function (done) {
     hippie(app)
       .json()
@@ -61,7 +61,7 @@ describe('Product backend is properly functioning', function () {
       .expectStatus(200)
       .expect(function(res, body, next) {
           var array = JSON.parse(body);
-          var err = array.count > 1;
+          var err = array.count >= 1;
           next(err);
       })
       .end(function(err, res, body) {
@@ -73,7 +73,7 @@ describe('Product backend is properly functioning', function () {
     it('Update a product', function () {
     hippie(app)
       .json()
-      .put('/products/2')
+      .put('/products/1')
       .expectStatus(200)
       .send(JSON.stringify({ 
         "product_id": 2,
@@ -92,7 +92,7 @@ describe('Product backend is properly functioning', function () {
   it('Delete a product', function (done) {
     hippie(app)
       .json()
-      .del('/products/2')
+      .del('/products/4')
       .expectStatus(200)
       .expectBody('"Affected rows: 1"')
       .end(function(err, res, body) {
