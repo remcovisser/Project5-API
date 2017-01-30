@@ -58,27 +58,11 @@ describe('/orders endpoint', function () {
       });
   });
 
-  it('Update an order', function (done) {
-    hippie(app)
-      .json()
-      .put('/orders/22')
-      .send(JSON.stringify({
-        order_id: "24",
-        order_status: "Updated"
-      }))
-      .expectStatus(200)
-      .end(function(err, res, body) {
-        if (err) throw err;
-        done();
-      });
-  });
-
   it('Delete an order', function (done) {
     hippie(app)
       .json()
       .del('/orders/2')
       .expectStatus(200)
-      .expectBody('"Affected rows: 1"')
       .end(function(err, res, body) {
         if (err) throw err;
         done();

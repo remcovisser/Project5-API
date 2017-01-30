@@ -19,7 +19,7 @@ module.exports = {
 
   update: function(req, res, next) {
     var data = JSON.parse(req.body);
-    orderModel.update(res, data, data.order_id);
+    orderModel.update(res, data, req.params.id);
     next();
   },
 
