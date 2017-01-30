@@ -19,7 +19,6 @@ exports.send = function(res, executingQuery, parameters)
 {
     connection.connection.query(executingQuery, parameters, function(error, result)
     {
-        console.log(executingQuery);
         error == null ? res.send("Affected rows: " + result.affectedRows) : res.send(error);
     });
 }

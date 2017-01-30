@@ -58,6 +58,15 @@ server.post('orderlines/create', orderLinesController.store);
 server.put('orderlines/:product_id/:order_id', orderLinesController.update);
 server.del('orderlines/:product_id/:order_id', orderLinesController.destroy);
 
+// OrderLines
+server.get('orderlines', orderLinesController.index);
+server.get('orderlines/info/:order_id', orderLinesController.info);
+server.get('orderlines/show-all/:order_id', orderLinesController.showAll);
+server.get('orderlines/:product_id/:order_id', orderLinesController.show);
+server.post('orderlines/create', orderLinesController.store);
+server.put('orderlines/:product_id/:order_id', orderLinesController.update);
+server.del('orderlines/:product_id/:order_id', orderLinesController.destroy);
+
 // Users
 server.get('users', userController.index);
 server.get('users/:id', userController.show);
