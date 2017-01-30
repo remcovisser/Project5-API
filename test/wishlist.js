@@ -19,23 +19,23 @@ describe('/wishlist', function () {
   it('Get all products from an user wishlist', function (done) {
     hippie(app)
       .json()
-      .get('/wishlist/products/1')
+      .get('/wishlist/products/26')
       .expectStatus(200)
       .expectBody([{
-        "user_id": 1,
-        "product_id": 2,
-        "addition_date": '2017-01-28T23:00:00.000Z',
-        "hidden": 0,
-        "boolean_deleted": 1,
-        "p_name": 'test_product_deleted',
-        "p_description": 'This is a test product and it is deleted',
-        "p_price": '200',
-        "p_brand": 'brand2',
-        "p_model": 'model2',
-        "p_submodel": 'sub_model2',
-        "p_color": 'color2',
-        "p_construction_year": 4000,
-        "p_image": 'http://i.imgur.com/yneAVIJ.jpg'
+        user_id: 26,
+        product_id: 1,
+        addition_date: '2017-01-29T23:00:00.000Z',
+        hidden: 0,
+        boolean_deleted: 0,
+        p_name: 'test_product',
+        p_description: 'This is a test product',
+        p_price: '100',
+        p_brand: 'brand',
+        p_model: 'model',
+        p_submodel: 'sub_model',
+        p_color: 'color',
+        p_construction_year: 2000,
+        p_image: 'https://openclipart.org/image/2400px/svg_to_png/222252/feels.png'
       }])
       .end(function(err, res, body) {
         //console.log(body);
@@ -49,9 +49,7 @@ describe('/wishlist', function () {
       .json()
       .get('/wishlist/1')
       .expectStatus(200)
-      .expectBody([{
-        "hidden": 0
-      }])
+      .expectBody([{"hidden": 0}, {"hidden": 0}])
       .end(function(err, res, body) {
         //console.log(body);
         if (err) throw err;
@@ -94,19 +92,5 @@ describe('/wishlist', function () {
         done();
       });
   });
-
-  it('Delete a wish', function () {
-    hippie(app)
-      .json()
-      .del('/wishlist/4/9')
-      .expectStatus(200)
-      .end(function(err, res, body) {
-        if (err) throw err;
-        done();
-      });
-  });
-
-
-
   
 });
