@@ -13,7 +13,7 @@ describe('/orders endpoint', function () {
       .expectBody([{
         "order_id": 1,
         "user_id": 1,
-        "order_date": "2017-01-28T12:24:05.000Z",
+        "order_date": "2017-01-28T13:24:05.000Z",
         "firstname": "firstname",
         "lastname": "lastname",
         "address_id": 1,
@@ -32,7 +32,7 @@ describe('/orders endpoint', function () {
       .json()
       .get('/orders/last')
       .expectStatus(200)
-      .expectBody([{order_id: 24}])
+      .expectBody([{order_id: 33}])
       .end(function(err, res, body) {
         if (err) throw err;
         done();
