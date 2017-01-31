@@ -88,5 +88,11 @@ describe('/users', function () {
       .json()
       .del('/users/2')
       .expectStatus(200)
+      .end(function(err, res, body) {
+        if (err) throw err;
+        done();
+      });
   });
+
+
 });
