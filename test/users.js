@@ -28,10 +28,10 @@ describe('/users', function () {
         "boolean_deleted": 0,
         "boolean_banned" : 0,
         "token": null
-      }]);
+      }])
   });
 
-  it('Look for an username', function (done) {
+  it('Look for an username', function () {
     hippie(app)
       .json()
       .get('/users/test_user/find')
@@ -47,15 +47,10 @@ describe('/users', function () {
         "boolean_deleted": 0,
         "boolean_banned" : 0,
         "token": null
-      }])
-      .end(function(err, res, body) {
-        //console.log(body);
-        if (err) throw err;
-        done();
-      });
+      }]);
   });
 
-  it('Look for an user with specific username/password', function (done) {
+  it('Look for an user with specific username/password', function () {
     hippie(app)
       .json()
       .get('/users/test_user/123')
@@ -71,16 +66,11 @@ describe('/users', function () {
         "boolean_deleted": 0,
         "boolean_banned" : 0,
         "token": null
-      }])
-      .end(function(err, res, body) {
-        //console.log(body);
-        if (err) throw err;
-        done();
-      });
+      }]);
   });
 
 
-  it('Update an user', function (done) {
+  it('Update an user', function () {
     hippie(app)
       .json()
       .put('/users/6')
@@ -91,10 +81,6 @@ describe('/users', function () {
         email: "new@updated.nl"
       }))
       .expectStatus(200)
-      .end(function(err, res, body) {
-        if (err) throw err;
-        done();
-      });
   });
 
   it('Delete an user', function (done) {
@@ -102,11 +88,5 @@ describe('/users', function () {
       .json()
       .del('/users/2')
       .expectStatus(200)
-      .end(function(err, res, body) {
-        if (err) throw err;
-        done();
-      });
   });
-
-
 });
