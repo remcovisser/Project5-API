@@ -11,7 +11,7 @@ describe('/admin endpoint', function () {
       .get('/admin/registered-users')
       .expectStatus(200)
       .expectBody([{ 
-        day: [1, 3, 5 ], 
+        day: [1, 3, 6], 
         users: [27, 29, 30]
       }])
       .end(function(err, res, body) {
@@ -27,7 +27,7 @@ describe('/admin endpoint', function () {
       .expectStatus(200)
       .expectBody([{ 
         productnames: ['test_product_deleted', 'test_product'],
-        amount: [2, 1] 
+        amount: [11, 1] 
       }])
       .end(function(err, res, body) {
         if (err) throw err;
