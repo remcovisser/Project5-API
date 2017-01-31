@@ -131,6 +131,32 @@ server.del('wishlist/:user_id/:product_id', wishlistController.destroy);
 
 // ----- These calls need to be below the auth check
 
+//jwt config and middleware every routes below is secure with token
+server.use(function(req, res, next) {
+	// check header or url parameters or post parameters for token
+    //var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+	var token = req.headers['authorization'];
+	// decode token
+	if (token) {
+		// verifies secret and checks exp 
+		jwt.verify(token, all_vars.secret, function(err, decoded) {			
+			if (err) {
+				return res.json({ success: false, message: 'Failed to authenticate token.' });		
+			} else {
+				// if everything is good, save to request for use in other routes
+				req.decoded = decoded;	
+				next();
+			}
+		});
+	} else {
+		// if there is no token return an error
+		return res.send({ 
+			success: false, 
+			message: 'No token provided.'
+		});
+	}
+});
+
 // Favourites
 server.get('favourites', favouriteController.index);
 server.get('favourites/:user_id/products', favouriteController.getProducts);
@@ -160,32 +186,6 @@ server.put('orderlines/:product_id/:order_id', orderLinesController.update);
 server.del('orderlines/:product_id/:order_id', orderLinesController.destroy);
 
 // Admin
-server.get('admin/registered-users', adminController.registeredUsers);
 server.get('admin/best-selling-products/:amount', adminController.bestSellingProducts);
 server.get('admin/sumorders', adminController.sumOrders);
-
-//jwt config and middleware every routes below is secure with token
-server.use(function(req, res, next) {
-	// check header or url parameters or post parameters for token
-    //var token = req.body.token || req.param('token') || req.headers['x-access-token'];
-	var token = req.headers['authorization'];
-	// decode token
-	if (token) {
-		// verifies secret and checks exp 
-		jwt.verify(token, all_vars.secret, function(err, decoded) {			
-			if (err) {
-				return res.json({ success: false, message: 'Failed to authenticate token.' });		
-			} else {
-				// if everything is good, save to request for use in other routes
-				req.decoded = decoded;	
-				next();
-			}
-		});
-	} else {
-		// if there is no token return an error
-		return res.send({ 
-			success: false, 
-			message: 'No token provided.'
-		});
-	}
-});
+server.get('admin/registered-users', adminController.registeredUsers);
