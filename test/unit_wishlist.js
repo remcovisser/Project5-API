@@ -56,7 +56,7 @@ describe('/wishlist', function () {
         .array(hidden)
             .object(hidden[0])
                 .hasProperty('hidden')
-                    .bool(hidden[0]['hidden']).isTrue()
+                    .number(hidden[0]['hidden']).is(1)
     ;
 
   });
