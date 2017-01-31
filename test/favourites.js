@@ -43,8 +43,8 @@ describe('/favourites endpoint', function () {
         "password": "123",
         "email": "test@tset.nl",
         "admin": 0,
-        "date_of_birth": "2000-10-09T22:00:00.000Z",
-        "create_date": "2017-01-26T23:00:00.000Z",
+        "date_of_birth": "2000-10-10T00:00:00.000Z",
+        "create_date": "2017-01-27T00:00:00.000Z",
         "boolean_deleted": 0,
         "boolean_banned": 0,
         "token": null
@@ -97,7 +97,7 @@ describe('/favourites endpoint', function () {
       .json()
       .del('/favourites/5/5')
       .expectStatus(200)
-      .expectBody('"Affected rows: 1"')
+      .expectBody('"Affected rows: 2"')
       .end(function(err, res, body) {
         if (err) throw err;
         done();
