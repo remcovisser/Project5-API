@@ -73,15 +73,15 @@ describe('/wishlist', function () {
       test
         .object(wish)
             .hasProperty('user_id')
-                .hasValue(1)
             .hasProperty('product_id')
-                .hasValue(2)
             .hasProperty('addition_date')
-                .hasValue('2017-01-28T23:00:00.000Z')
             .hasProperty('hidden')
-                .hasValue(0)
             .hasProperty('boolean_deleted')
-                .hasValue(0)
+        .number(wish.user_id).is(1)
+        .number(wish.product_id).is(2)
+        .string(wish.addition_date).is('2017-01-28T23:00:00.000Z')
+        .number(wish.hidden).is(0)
+        .number(wish.boolean_deleted).is(0)
         ;
 
   });
