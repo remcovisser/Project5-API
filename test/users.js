@@ -10,11 +10,6 @@ describe('/users', function () {
       .json()
       .get('/users')
       .expectStatus(200)
-      .end(function(err, res, body) {
-        //console.log(body);
-        if (err) throw err;
-        done();
-      });
   });
 
   it('Get an user by id', function (done) {
@@ -53,7 +48,7 @@ describe('/users', function () {
         "email": "test@tset.nl",
         "admin": 0,
         "date_of_birth": "2000-10-10T00:00:00.000Z",
-        "create_date": "2017-01-27T00:00:00.000Z",
+        "create_date": "2017-01-26T23:00:00.000Z",
         "boolean_deleted": 0,
         "boolean_banned" : 0,
         "token": null
