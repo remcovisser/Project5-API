@@ -52,8 +52,8 @@ describe('/users', function () {
         "password": "123",
         "email": "test@tset.nl",
         "admin": 0,
-        "date_of_birth": "2000-10-09T22:00:00.000Z",
-        "create_date": "2017-01-26T23:00:00.000Z",
+        "date_of_birth": "2000-10-10T00:00:00.000Z",
+        "create_date": "2017-01-27T00:00:00.000Z",
         "boolean_deleted": 0,
         "boolean_banned" : 0,
         "token": null
@@ -76,8 +76,8 @@ describe('/users', function () {
         "password": "123",
         "email": "test@tset.nl",
         "admin": 0,
-        "date_of_birth": "2000-10-09T22:00:00.000Z",
-        "create_date": "2017-01-26T23:00:00.000Z",
+        "date_of_birth": "2000-10-10T00:00:00.000Z",
+        "create_date": "2017-01-27T00:00:00.000Z",
         "boolean_deleted": 0,
         "boolean_banned" : 0,
         "token": null
