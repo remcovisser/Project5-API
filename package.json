@@ -13,6 +13,7 @@
     "node-cache" : "^4.1.1",
     "requestify" : "^0.2.5",
     "hippie": "0.5.1",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "unit.js": "^2.0.0"
   }
 }
