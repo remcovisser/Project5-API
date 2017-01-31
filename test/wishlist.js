@@ -24,7 +24,7 @@ describe('/wishlist', function () {
       .expectBody([{
         user_id: 26,
         product_id: 1,
-        addition_date: '2017-01-29T23:00:00.000Z',
+        addition_date: '2017-01-30T00:00:00.000Z',
         hidden: 0,
         boolean_deleted: 0,
         p_name: 'test_product',
@@ -65,7 +65,7 @@ describe('/wishlist', function () {
       .expectBody([{
         "user_id": 1,
         "product_id": 2,
-        "addition_date": '2017-01-28T23:00:00.000Z',
+        "addition_date": '2017-01-29T00:00:00.000Z',
         "hidden": 0,
         "boolean_deleted": 0
       }])
