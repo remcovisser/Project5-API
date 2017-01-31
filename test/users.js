@@ -12,7 +12,7 @@ describe('/users', function () {
       .expectStatus(200)
   });
 
-  it('Get an user by id', function (done) {
+  it('Get an user by id', function () {
     hippie(app)
       .json()
       .get('/users/1')
@@ -28,12 +28,7 @@ describe('/users', function () {
         "boolean_deleted": 0,
         "boolean_banned" : 0,
         "token": null
-      }])
-      .end(function(err, res, body) {
-        //console.log(body);
-        if (err) throw err;
-        done();
-      });
+      }]);
   });
 
   it('Look for an username', function (done) {
