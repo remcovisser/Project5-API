@@ -1,6 +1,6 @@
 var test = require('unit.js');
 
-describe('/wishlist', function () {
+describe('/wishlist UNIT TESTING', function () {
 
   it('Verify data for users overview', function () {
       var users = [

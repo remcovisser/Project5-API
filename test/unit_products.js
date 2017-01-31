@@ -1,6 +1,6 @@
 var test = require('unit.js');
 
-describe('/products', function () {
+describe('/products UNIT TESTING', function () {
 
   it('Verify if data exists for product overview', function () {
       var products = [{ 
