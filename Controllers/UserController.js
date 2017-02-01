@@ -70,7 +70,7 @@ module.exports = {
       next();
       }
   },
-
+  
   update: function(req, res, next) {
     var data = JSON.parse(req.body);
     userModel.update(res, data, data.user_id);

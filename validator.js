@@ -1,5 +1,5 @@
 var requestify = require('requestify'); 
-var local = "http://localhost:8080/";
+var local = "http://localhost:9000/";
 
 module.exports = {
     uniqueUsername: function(username, callback) {
